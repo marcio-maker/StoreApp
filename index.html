@@ -1,771 +1,756 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Hair by Márcio - Transforme seu visual com cortes modernos, cores exclusivas e produtos profissionais. Agende sua consulta e descubra seu estilo único.">
-  <meta name="keywords"
-    content="hair by márcio, cabeleireiro, cortes femininos, coloração, visagismo, colorimetria, produtos capilares">
-  <meta property="og:title" content="Hair by Márcio - Transforme seu Visual">
-  <meta property="og:description"
-    content="Especialista em cortes modernos, coloração e visagismo. Descubra seu estilo único conosco.">
-  <meta property="og:image" content="https://example.com/hair-by-marcio-og-image.jpg">
-  <meta property="og:url" content="https://hairbymarcio.com">
-  <title>Hair by Márcio - Transforme seu Visual</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      color: #2d3748;
-      overflow-x: hidden;
-    }
-
-    /* Container para o Three.js */
-    #header-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      z-index: 10;
-    }
-
-    /* Header com conteúdo */
-    .header-content {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      z-index: 20;
-      background: transparent;
-    }
-
-    .logo-section {
-      margin-bottom: 1rem;
-    }
-
-    .logo-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(45deg, #fbbf24, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .logo-subtitle {
-      font-size: 0.875rem;
-      opacity: 0.9;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      margin-bottom: 1rem;
-    }
-
-    /* Menu de navegação */
-    .nav-menu {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      white-space: nowrap;
-      gap: 12px;
-      margin-bottom: 15px;
-      padding: 10px 10px;
-      scrollbar-width: none;
-    }
-
-    .nav-menu::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-menu a {
-      flex: 0 0 auto;
-      min-width: 100px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 15px;
-      padding: 10px 22px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.10);
-      box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    .nav-menu a i {
-      font-size: 17px;
-    }
-
-    .nav-menu a:hover,
-    .nav-menu a:focus {
-      background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
-      color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(16, 185, 129, 0.18), 0 2px 8px 0 rgba(245, 158, 11, 0.10);
-      transform: translateY(-2px) scale(1.04);
-      outline: none;
-    }
-
-
-    /* Barra de busca */
-    .search-section {
-      display: flex;
-      justify-content: center;
-      padding: 0 1rem;
-    }
-
-    .search-container {
-      display: flex;
-      max-width: 400px;
-      width: 100%;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: none;
-      border-radius: 2rem 0 0 2rem;
-      outline: none;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      font-size: 0.875rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-button {
-      padding: 0.75rem 1rem;
-      border: none;
-      background: linear-gradient(45deg, #dac05c, #f59e0b);
-      color: white;
-      border-radius: 0 2rem 2rem 0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-button:hover {
-      background: linear-gradient(45deg, #f59e0b, #dac05c);
-      transform: translateY(-1px);
-    }
-
-    /* Hero Section */
-    .hero-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-top: 200px;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(34, 74, 97, 0.05) 0%, rgba(218, 192, 92, 0.05) 100%);
-    }
-
-    .hero-content {
-      text-align: center;
-      max-width: 800px;
-      z-index: 10;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(45deg, #224a61, #dac05c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    .hero-description {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      color: #4a5568;
-      animation: fadeInUp 1s ease-out 0.3s both;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out 0.6s both;
-    }
-
-    .hero-btn {
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 3rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, #224a61, #dac05c);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
-      color: #224a61;
-      border: 2px solid #224a61;
-    }
-
-    .hero-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Services Section */
-    .services-section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #224a61;
-      margin-bottom: 1rem;
-    }
-
-    .section-title p {
-      font-size: 1.125rem;
-      color: #4a5568;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(45deg, #224a61, #dac05c);
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      background: linear-gradient(45deg, #224a61, #dac05c);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #224a61;
-    }
-
-    .service-card p {
-      color: #4a5568;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .service-btn {
-      background: linear-gradient(45deg, #224a61, #dac05c);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: 500;
-    }
-
-    .service-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* About Section */
-    .about-section {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      padding: 4rem 2rem;
-    }
-
-    .about-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #224a61;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text p {
-      color: #4a5568;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      font-size: 1.125rem;
-    }
-
-    .about-image {
-      position: relative;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      background: linear-gradient(45deg, #224a61, #dac05c);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .cta-content h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-content p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      color: white;
-      font-size: 1.25rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .instagram {
-      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-    }
-
-    .whatsapp {
-      background: linear-gradient(45deg, #25D366, #128C7E);
-    }
-
-    .facebook {
-      background: linear-gradient(45deg, #1877F2, #0A5F9E);
-    }
-
-    .social-icon:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .copyright {
-      font-size: 0.875rem;
-      color: #4a5568;
-      margin-top: 1rem;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      #header-bg {
-        height: 180px;
-      }
-
-      .header-content {
-        padding: 0.75rem;
-      }
-
-      .logo-title {
-        font-size: 1.5rem;
-      }
-
-      .logo-subtitle {
-        font-size: 0.75rem;
-      }
-
-      .nav-menu {
-        gap: 0.25rem;
-      }
-
-      .nav-item {
-        font-size: 0.75rem;
-        padding: 0.375rem 0.75rem;
-      }
-
-      .hero-section {
-        margin-top: 180px;
-        padding: 1rem;
-      }
-
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .hero-description {
-        font-size: 1rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .hero-btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .about-text h2 {
-        font-size: 2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hair by Márcio - Transforme seu visual com cortes modernos, cores exclusivas e produtos profissionais. Agende sua consulta e descubra seu estilo único.">
+    <meta name="keywords" content="hair by márcio, cabeleireiro, cortes femininos, coloração, visagismo, colorimetria, produtos capilares">
+    <meta property="og:title" content="Hair by Márcio - Transforme seu Visual">
+    <meta property="og:description" content="Especialista em cortes modernos, coloração e visagismo. Descubra seu estilo único conosco.">
+    <meta property="og:image" content="https://example.com/hair-by-marcio-og-image.jpg">
+    <meta property="og:url" content="https://hairbymarcio.com">
+    <title>Hair by Márcio - Transforme seu Visual</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        /* Container para o Three.js */
+        #header-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 10;
+        }
+
+        /* Header com conteúdo */
+        .header-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 20;
+            background: transparent;
+        }
+
+        .logo-section {
+            margin-bottom: 1rem;
+        }
+
+        .logo-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        /* Menu de navegação */
+        .nav-menu {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            white-space: nowrap;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 10px 10px;
+            scrollbar-width: none;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-menu a {
+            flex: 0 0 auto;
+            min-width: 100px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 22px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
+            transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-menu a i {
+            font-size: 17px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a:focus {
+            background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+            color: #fff;
+            box-shadow: 0 4px 18px 0 rgba(16, 185, 129, 0.18), 0 2px 8px 0 rgba(245, 158, 11, 0.10);
+            transform: translateY(-2px) scale(1.04);
+            outline: none;
+        }
+
+        /* Barra de busca */
+        .search-section {
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .search-container {
+            display: flex;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 2rem 0 0 2rem;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            font-size: 0.875rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-button {
+            padding: 0.75rem 1rem;
+            border: none;
+            background: linear-gradient(45deg, #dac05c, #f59e0b);
+            color: white;
+            border-radius: 0 2rem 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-button:hover {
+            background: linear-gradient(45deg, #f59e0b, #dac05c);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 200px;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(34, 74, 97, 0.05) 0%, rgba(218, 192, 92, 0.05) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #224a61, #dac05c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #224a61, #dac05c);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #224a61;
+            border: 2px solid #224a61;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #224a61;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.125rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #224a61, #dac05c);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #224a61, #dac05c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #224a61;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-btn {
+            background: linear-gradient(45deg, #224a61, #dac05c);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 4rem 2rem;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #224a61;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(45deg, #224a61, #dac05c);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+
+        .facebook {
+            background: linear-gradient(45deg, #1877F2, #0A5F9E);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: #4a5568;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #header-bg {
+                height: 180px;
+            }
+
+            .header-content {
+                padding: 0.75rem;
+            }
+
+            .logo-title {
+                font-size: 1.5rem;
+            }
+
+            .logo-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .nav-menu {
+                gap: 0.25rem;
+            }
+
+            .nav-item {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.75rem;
+            }
+
+            .hero-section {
+                margin-top: 180px;
+                padding: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Header Background com Three.js -->
-  <div id="header-bg"></div>
+    <!-- Header Background com Three.js -->
+    <div id="header-bg"></div>
 
-  <!-- Header Content -->
-  <header class="header-content">
-    <div class="logo-section">
-      <h1 class="logo-title"><i class="fas fa-crown"></i> HAIR BY MÁRCIO</h1>
-      <p class="logo-subtitle">Transforme seu visual com estilo único</p>
-    </div>
-
-    <!-- Navigation Menu -->
-    <nav class="nav-menu">
-      <a href="#home" class="nav-item">
-        <i class="fas fa-home"></i> Início
-      </a>
-      <a href="#cortes" class="nav-item">
-        <i class="fas fa-cut"></i> Cortes
-      </a>
-      <a href="#cores" class="nav-item">
-        <i class="fas fa-palette"></i> Cores
-      </a>
-      <a href="#produtos" class="nav-item">
-        <i class="fas fa-shopping-bag"></i> Produtos
-      </a>
-      <a href="#visagismo" class="nav-item">
-        <i class="fas fa-face-smile"></i> Visagismo
-      </a>
-      <a href="#colorimetria" class="nav-item">
-        <i class="fas fa-eye-dropper"></i> Colorimetria
-      </a>
-      <a href="#blog" class="nav-item">
-        <i class="fas fa-blog"></i> Blog
-      </a>
-    </nav>
-
-    <!-- Search Bar -->
-    <div class="search-section">
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Buscar serviços..." id="searchInput">
-        <button class="search-button" onclick="searchServices()">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero-section" id="home">
-    <div class="hero-content">
-      <h2 class="hero-title">Transforme Seu Visual</h2>
-      <p class="hero-description">
-        Descubra seu estilo único com nossos serviços especializados em cortes modernos,
-        coloração profissional e visagismo personalizado.
-      </p>
-      <div class="hero-buttons">
-        <a href="#servicos" class="hero-btn btn-primary">
-          <i class="fas fa-cut"></i> Nossos Serviços
-        </a>
-        <a href="#contato" class="hero-btn btn-secondary">
-          <i class="fas fa-calendar-alt"></i> Agendar Consulta
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="services-section" id="servicos">
-    <div class="section-title">
-      <h2>Nossos Serviços</h2>
-      <p>Oferecemos uma gama completa de serviços para transformar e realçar sua beleza natural</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-cut"></i>
+    <!-- Header Content -->
+    <header class="header-content">
+        <div class="logo-section">
+            <h1 class="logo-title"><i class="fas fa-crown"></i> HAIR BY MÁRCIO</h1>
+            <p class="logo-subtitle">Transforme seu visual com estilo único</p>
         </div>
-        <h3>Cortes Modernos</h3>
-        <p>Cortes personalizados que combinam com seu estilo de vida e formato de rosto. Do clássico ao contemporâneo.
-        </p>
-        <a href="#cortes" class="service-btn">Explorar Cortes</a>
-      </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-palette"></i>
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i> Início
+            </a>
+            <a href="cortes_index.html" class="nav-item">
+                <i class="fas fa-cut"></i> Cortes
+            </a>
+            <a href="cores_index.html" class="nav-item">
+                <i class="fas fa-palette"></i> Cores
+            </a>
+            <a href="produtos_index.html" class="nav-item">
+                <i class="fas fa-shopping-bag"></i> Produtos
+            </a>
+            <a href="visagismo.html" class="nav-item">
+                <i class="fas fa-face-smile"></i> Visagismo
+            </a>
+            <a href="colorimetria.html" class="nav-item">
+                <i class="fas fa-eye-dropper"></i> Colorimetria
+            </a>
+            <a href="blog_index.html" class="nav-item">
+                <i class="fas fa-blog"></i> Blog
+            </a>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar serviços..." id="searchInput">
+                <button class="search-button" onclick="searchServices()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
-        <h3>Coloração Profissional</h3>
-        <p>Técnicas avançadas de coloração: balayage, ombré, luzes e coloração completa com produtos de alta qualidade.
-        </p>
-        <a href="#cores" class="service-btn">Ver Cores</a>
-      </div>
+    </header>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-face-smile"></i>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <h2 class="hero-title">Transforme Seu Visual</h2>
+            <p class="hero-description">
+                Descubra seu estilo único com nossos serviços especializados em cortes modernos, 
+                coloração profissional e visagismo personalizado.
+            </p>
+            <div class="hero-buttons">
+                <a href="#servicos" class="hero-btn btn-primary">
+                    <i class="fas fa-cut"></i> Nossos Serviços
+                </a>
+                <a href="#contato" class="hero-btn btn-secondary">
+                    <i class="fas fa-calendar-alt"></i> Agendar Consulta
+                </a>
+            </div>
         </div>
-        <h3>Visagismo</h3>
-        <p>Análise completa do seu perfil para encontrar o corte e estilo que mais valorizam suas características.</p>
-        <a href="#visagismo" class="service-btn">Fazer Quiz</a>
-      </div>
+    </section>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-eye-dropper"></i>
+    <!-- Services Section -->
+    <section class="services-section" id="servicos">
+        <div class="section-title">
+            <h2>Nossos Serviços</h2>
+            <p>Oferecemos uma gama completa de serviços para transformar e realçar sua beleza natural</p>
         </div>
-        <h3>Colorimetria</h3>
-        <p>Estudo das cores que harmonizam com seu tom de pele, olhos e personalidade para um visual perfeito.</p>
-        <a href="#colorimetria" class="service-btn">Descobrir Cores</a>
-      </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-shopping-bag"></i>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <h3>Cortes Modernos</h3>
+                <p>Cortes personalizados que combinam com seu estilo de vida e formato de rosto. Do clássico ao contemporâneo.</p>
+                <a href="cortes_index.html" class="service-btn">Explorar Cortes</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Coloração Profissional</h3>
+                <p>Técnicas avançadas de coloração: balayage, ombré, luzes e coloração completa com produtos de alta qualidade.</p>
+                <a href="cores_index.html" class="service-btn">Ver Cores</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-face-smile"></i>
+                </div>
+                <h3>Visagismo</h3>
+                <p>Análise completa do seu perfil para encontrar o corte e estilo que mais valorizam suas características.</p>
+                <a href="visagismo.html" class="service-btn">Fazer Quiz</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-eye-dropper"></i>
+                </div>
+                <h3>Colorimetria</h3>
+                <p>Estudo das cores que harmonizam com seu tom de pele, olhos e personalidade para um visual perfeito.</p>
+                <a href="colorimetria.html" class="service-btn">Descobrir Cores</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h3>Produtos Profissionais</h3>
+                <p>Linha completa de produtos para manutenção e cuidados em casa. Qualidade profissional ao seu alcance.</p>
+                <a href="produtos_index.html" class="service-btn">Ver Produtos</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <h3>Blog</h3>
+                <p>Dicas de cuidados, tendências, inspirações e novidades do universo da beleza para você se manter sempre atualizado.</p>
+                <a href="blog_index.html" class="service-btn">Acessar Blog</a>
+            </div>
         </div>
-        <h3>Produtos Profissionais</h3>
-        <p>Linha completa de produtos para manutenção e cuidados em casa. Qualidade profissional ao seu alcance.</p>
-        <a href="#produtos" class="service-btn">Ver Produtos</a>
-      </div>
+    </section>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-blog"></i>
+    <!-- About Section -->
+    <section class="about-section" id="sobre">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Sobre Márcio</h2>
+                <p>Com mais de 10 anos de experiência no mercado da beleza, Márcio é especialista em transformações capilares que valorizam a personalidade única de cada cliente.</p>
+                <p>Formado em visagismo e colorimetria, utiliza técnicas modernas e produtos de alta qualidade para garantir resultados excepcionais e duradouros.</p>
+                <p>Sua paixão é ajudar pessoas a descobrirem seu potencial de beleza através de cortes e cores que expressam sua verdadeira essência.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60" alt="Márcio - Cabeleireiro Profissional">
+            </div>
         </div>
-        <h3>Blog</h3>
-        <p>Dicas de cuidados, tendências, inspirações e novidades do universo da beleza para você se manter sempre
-          atualizado.</p>
-        <a href="#blog" class="service-btn">Acessar Blog</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section class="about-section" id="sobre">
-    <div class="about-content">
-      <div class="about-text">
-        <h2>Sobre Márcio</h2>
-        <p>Com mais de 10 anos de experiência no mercado da beleza, Márcio é especialista em transformações capilares
-          que valorizam a personalidade única de cada cliente.</p>
-        <p>Formado em visagismo e colorimetria, utiliza técnicas modernas e produtos de alta qualidade para garantir
-          resultados excepcionais e duradouros.</p>
-        <p>Sua paixão é ajudar pessoas a descobrirem seu potencial de beleza através de cortes e cores que expressam sua
-          verdadeira essência.</p>
-      </div>
-      <div class="about-image">
-        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60"
-          alt="Márcio - Cabeleireiro Profissional">
-      </div>
-    </div>
-  </section>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contato">
+        <div class="cta-content">
+            <h2>Pronto para Transformar seu Visual?</h2>
+            <p>Agende sua consulta e descubra como podemos realçar sua beleza natural</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5511999999999" class="hero-btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="tel:+5511999999999" class="hero-btn btn-secondary">
+                    <i class="fas fa-phone"></i> Ligar Agora
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section" id="contato">
-    <div class="cta-content">
-      <h2>Pronto para Transformar seu Visual?</h2>
-      <p>Agende sua consulta e descubra como podemos realçar sua beleza natural</p>
-      <div class="hero-buttons">
-        <a href="https://wa.me/5511999999999" class="hero-btn btn-secondary">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="tel:+5511999999999" class="hero-btn btn-secondary">
-          <i class="fas fa-phone"></i> Ligar Agora
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#" class="social-icon instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5511999999999" class="social-icon whatsapp" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            © 2025 Hair by Márcio - Todos os direitos reservados
+        </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="#" class="social-icon instagram" title="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://wa.me/5511999999999" class="social-icon whatsapp" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <a href="#" class="social-icon facebook" title="Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </div>
-    <div class="copyright">
-      © 2025 Hair by Márcio - Todos os direitos reservados
-    </div>
-  </footer>
+    <!-- Three.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script>
+        // Three.js Animated Background
+        function initGradientBackground() {
+            const container = document.getElementById('header-bg');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
 
-  <!-- Three.js Script -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script>
-    // Three.js Animated Background
-    function initGradientBackground() {
-      const container = document.getElementById('header-bg');
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(
+                width / -2, width / 2, height / 2, height / -2, 1, 1000
+            );
+            camera.position.z = 2;
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(
-        width / -2, width / 2, height / 2, height / -2, 1, 1000
-      );
-      camera.position.z = 2;
+            const renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                antialias: true
+            });
+            renderer.setSize(width, height);
+            container.appendChild(renderer.domElement);
 
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true
-      });
-      renderer.setSize(width, height);
-      container.appendChild(renderer.domElement);
+            const geometry = new THREE.PlaneGeometry(width, height);
+            const uniforms = {
+                time: { type: "f", value: 0 },
+                resolution: { type: "v2", value: new THREE.Vector2(width, height) }
+            };
 
-      const geometry = new THREE.PlaneGeometry(width, height);
-      const uniforms = {
-        time: { type: "f", value: 0 },
-        resolution: { type: "v2", value: new THREE.Vector2(width, height) }
-      };
-
-      const material = new THREE.ShaderMaterial({
-        uniforms: uniforms,
-        vertexShader: `
+            const material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: `
                     varying vec2 vUv;
                     void main() {
                         vUv = uv;
                         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                     }
                 `,
-        fragmentShader: `
+                fragmentShader: `
                     uniform float time;
                     varying vec2 vUv;
                     
@@ -786,88 +771,87 @@
                         gl_FragColor = vec4(color, 0.95);
                     }
                 `,
-        transparent: true
-      });
+                transparent: true
+            });
 
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
 
-      function animate() {
-        requestAnimationFrame(animate);
-        uniforms.time.value += 0.01;
-        renderer.render(scene, camera);
-      }
+            function animate() {
+                requestAnimationFrame(animate);
+                uniforms.time.value += 0.01;
+                renderer.render(scene, camera);
+            }
 
-      window.addEventListener('resize', () => {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
+            window.addEventListener('resize', () => {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                
+                camera.left = width / -2;
+                camera.right = width / 2;
+                camera.top = height / 2;
+                camera.bottom = height / -2;
+                camera.updateProjectionMatrix();
+                
+                renderer.setSize(width, height);
+                uniforms.resolution.value.set(width, height);
+                
+                mesh.geometry.dispose();
+                mesh.geometry = new THREE.PlaneGeometry(width, height);
+            });
 
-        camera.left = width / -2;
-        camera.right = width / 2;
-        camera.top = height / 2;
-        camera.bottom = height / -2;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(width, height);
-        uniforms.resolution.value.set(width, height);
-
-        mesh.geometry.dispose();
-        mesh.geometry = new THREE.PlaneGeometry(width, height);
-      });
-
-      animate();
-    }
-
-    // Search functionality
-    function searchServices() {
-      const term = document.getElementById('searchInput').value.toLowerCase();
-
-      if (term === '') {
-        alert('Digite algo para buscar!');
-        return;
-      }
-
-      if (term.includes('corte') || term.includes('cabelo')) {
-        document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-      } else if (term.includes('cor') || term.includes('tinta') || term.includes('balayage')) {
-        document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-      } else if (term.includes('produto') || term.includes('shampoo')) {
-        document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-      } else if (term.includes('visagismo') || term.includes('rosto')) {
-        document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-      } else if (term.includes('colorimetria') || term.includes('pele')) {
-        document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert(`Buscando por: "${term}"\n\nVisite nossas seções para encontrar o que procura!`);
-      }
-    }
-
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+            animate();
         }
-      });
-    });
 
-    // Search on Enter key
-    document.getElementById('searchInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        searchServices();
-      }
-    });
+        // Search functionality
+        function searchServices() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (term === '') {
+                alert('Digite algo para buscar!');
+                return;
+            }
 
-    // Initialize
-    window.addEventListener('load', () => {
-      initGradientBackground();
-    });
-  </script>
+            if (term.includes('corte') || term.includes('cabelo')) {
+                window.location.href = 'cortes_index.html';
+            } else if (term.includes('cor') || term.includes('tinta') || term.includes('balayage')) {
+                window.location.href = 'cores_index.html';
+            } else if (term.includes('produto') || term.includes('shampoo')) {
+                window.location.href = 'produtos_index.html';
+            } else if (term.includes('visagismo') || term.includes('rosto')) {
+                window.location.href = 'visagismo.html';
+            } else if (term.includes('colorimetria') || term.includes('pele')) {
+                window.location.href = 'colorimetria.html';
+            } else {
+                alert(`Buscando por: "${term}"\n\nVisite nossas seções para encontrar o que procura!`);
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchServices();
+            }
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            initGradientBackground();
+        });
+    </script>
 </body>
-
 </html>
