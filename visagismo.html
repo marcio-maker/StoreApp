@@ -90,7 +90,6 @@
       font-weight: 300;
     }
 
-    /* Menu de navegação */
     .nav-menu {
       display: flex;
       flex-wrap: nowrap;
@@ -116,7 +115,7 @@
       border-radius: 22px;
       background: rgba(255, 255, 255, 0.10);
       box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
+      transition: var(--transition-speed) ease;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
@@ -130,13 +129,15 @@
     }
 
     .nav-menu a:hover,
-    .nav-menu a:focus {
-      background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+    .nav-menu a:focus,
+    .nav-menu a.active {
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(16, 185, 129, 0.18), 0 2px 8px 0 rgba(245, 158, 11, 0.10);
+      box-shadow: 0 4px 18px 0 rgba(156, 39, 176, 0.18), 0 2px 8px 0 rgba(255, 112, 67, 0.10);
       transform: translateY(-2px) scale(1.04);
       outline: none;
     }
+
 
     /* Barra de busca elegante */
     .search-bar {
@@ -651,16 +652,18 @@
       <p>✨ Descubra seu corte ideal com visagismo personalizado ✨</p>
     </div>
 
-    <!-- Menu com ícones femininos -->
     <nav class="nav-menu">
-      <a href="index.html"><i class="fas fa-home"></i> Início</a>
-      <a href="cortes_index.html"><i class="fas fa-cut"></i> Cortes</a>
-      <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
-      <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-      <a href="visagismo.html"><i class="fas fa-mirror"></i> Visagismo</a>
-      <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
-      <a href="blog_index.html"><i class="fas fa-heart"></i> Blog</a>
+      <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Início</a>
+      <a href="index.html#services-section" class="nav-link"><i class="fas fa-cut"></i> Serviços</a>
+      <a href="index.html#portfolio-section" class="nav-link"><i class="fas fa-images"></i> Portfólio</a>
+      <a href="index.html#contact-section" class="nav-link"><i class="fas fa-phone-alt"></i> Contato</a>
+      <a href="cores_index.html" class="nav-link"><i class="fas fa-palette"></i> Cores</a>
+      <a href="cortes_index.html" class="nav-link"><i class="fas fa-cut"></i> Cortes</a>
+      <a href="visagismo.html" class="nav-link"><i class="fas fa-female"></i> Visagismo</a>
+      <a href="colorimetria.html" class="nav-link"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+      <a href="blog_index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
     </nav>
+
 
     <!-- Barra de busca elegante -->
     <div class="search-bar">
@@ -673,16 +676,15 @@
 
   <!-- Conteúdo principal -->
   <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12">
+    <div class="quiz-container" style="margin-bottom: 10px; ">
+      <div class="text-center mb-12">
       <h2 class="text-4xl font-bold text-blue-800 mb-4 header-title">💫 Quiz de Visagismo</h2>
-      <p class="text-lg text-gray-600">Descubra seu formato de rosto e os cortes que mais valorizam suas características
-        únicas</p>
+      <p class="text-lg text-gray-600">Descubra seu formato de rosto e os cortes que mais valorizam suas características únicas</p>
     </div>
 
-    <div class="quiz-container">
-      <div class="quiz-progress">
-        <div class="quiz-progress-bar" id="quizProgress"></div>
-      </div>
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quizProgress"></div>
+    </div>
 
       <!-- Questão 1: Formato da Testa -->
       <div class="quiz-question active" id="question1">

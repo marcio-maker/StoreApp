@@ -72,7 +72,6 @@
             margin-bottom: 15px;
         }
 
-        /* Menu de navegação */
         .nav-menu {
             display: flex;
             flex-wrap: nowrap;
@@ -82,28 +81,29 @@
             margin-bottom: 15px;
             padding: 10px 10px;
             scrollbar-width: none;
+            /* Firefox */
         }
 
         .nav-menu::-webkit-scrollbar {
             display: none;
+            /* Chrome, Safari, Edge */
         }
 
         .nav-menu a {
             flex: 0 0 auto;
+            /* Não encolher, não crescer */
             min-width: 100px;
+            /* Largura mínima para botões */
             color: #fff;
             text-decoration: none;
             font-size: 15px;
             padding: 10px 22px;
             border-radius: 22px;
-            background: rgba(255,255,255,0.10);
+            background: rgba(255, 255, 255, 0.10);
+            /* Fundo translúcido */
             box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-            transition: 
-            background 0.25s,
-            color 0.25s,
-            box-shadow 0.25s,
-            transform 0.18s;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+            transition: var(--transition-speed) ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
             display: flex;
             align-items: center;
             gap: 7px;
@@ -115,10 +115,12 @@
             font-size: 17px;
         }
 
-        .nav-menu a:hover, .nav-menu a:focus {
-            background: linear-gradient(90deg, #D2691E 0%, #DAA520 100%);
+        .nav-menu a:hover,
+        .nav-menu a:focus,
+        .nav-menu a.active {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: #fff;
-            box-shadow: 0 4px 18px 0 rgba(218, 165, 32, 0.18), 0 2px 8px 0 rgba(210, 105, 30, 0.10);
+            box-shadow: 0 4px 18px 0 rgba(156, 39, 176, 0.18), 0 2px 8px 0 rgba(255, 112, 67, 0.10);
             transform: translateY(-2px) scale(1.04);
             outline: none;
         }
@@ -468,14 +470,17 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="index.html"><i class="fas fa-home"></i> Início</a>
-            <a href="cortes_index.html"><i class="fas fa-cut"></i> Cortes</a>
-            <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
-            <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-            <a href="visagismo.html"><i class="fas fa-female"></i> Visagismo</a>
-            <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
-            <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Início</a>
+            <a href="index.html#services-section" class="nav-link"><i class="fas fa-cut"></i> Serviços</a>
+            <a href="index.html#portfolio-section" class="nav-link"><i class="fas fa-images"></i> Portfólio</a>
+            <a href="index.html#contact-section" class="nav-link"><i class="fas fa-phone-alt"></i> Contato</a>
+            <a href="cores_index.html" class="nav-link"><i class="fas fa-palette"></i> Cores</a>
+            <a href="cortes_index.html" class="nav-link"><i class="fas fa-cut"></i> Cortes</a>
+            <a href="visagismo.html" class="nav-link"><i class="fas fa-female"></i> Visagismo</a>
+            <a href="colorimetria.html" class="nav-link"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+            <a href="blog_index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
         </nav>
+
 
         <div class="search-bar">
             <input type="text" placeholder="Buscar dicas..." id="searchInput">
@@ -490,7 +495,8 @@
                 <img src="https://images.unsplash.com/photo-1616450091494-06d20392f418?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Mulher com cabelos grisalhos elegantes">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-sparkles" style="color: #DAA520; margin-right: 8px;"></i>Desvendando os Grisalhos: Cores e Cuidados</h2>
+                    <h2><i class="fas fa-sparkles" style="color: #DAA520; margin-right: 8px;"></i>Desvendando os
+                        Grisalhos: Cores e Cuidados</h2>
                     <p>Explore as melhores cores e tratamentos para realçar a beleza dos seus cabelos grisalhos,
                         mantendo-os vibrantes e saudáveis com produtos especializados.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article1')">
@@ -527,7 +533,8 @@
                 <img src="https://images.unsplash.com/photo-1620942555562-b91c0e3521e1?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Cabelo loiro brilhante e saudável">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-sun" style="color: #DAA520; margin-right: 8px;"></i>Loiro Radiante: Mantenha a Cor e a Saúde</h2>
+                    <h2><i class="fas fa-sun" style="color: #DAA520; margin-right: 8px;"></i>Loiro Radiante: Mantenha a
+                        Cor e a Saúde</h2>
                     <p>Descubra os segredos para manter seu cabelo loiro vibrante, saudável e livre de tons indesejados,
                         com uma rotina de cuidados essencial e produtos profissionais.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article2')">
@@ -564,7 +571,8 @@
                 <img src="https://images.unsplash.com/photo-1549495744-88427f7a77b8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Cabelo castanho com brilho intenso">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-gem" style="color: #DAA520; margin-right: 8px;"></i>Castanho Luminoso: Dicas para Brilho Intenso</h2>
+                    <h2><i class="fas fa-gem" style="color: #DAA520; margin-right: 8px;"></i>Castanho Luminoso: Dicas
+                        para Brilho Intenso</h2>
                     <p>Conquiste um brilho espetacular nos seus cabelos castanhos com essas dicas de tonalização,
                         hidratação e produtos que realçam a cor natural dos fios.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article3')">
@@ -601,7 +609,8 @@
                 <img src="https://images.unsplash.com/photo-1619890989717-b7713d29482f?q=80&w=1858&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Pessoa aplicando tratamento antiqueda no cabelo">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-shield-alt" style="color: #DAA520; margin-right: 8px;"></i>Combata a Queda: Soluções e Produtos Eficazes</h2>
+                    <h2><i class="fas fa-shield-alt" style="color: #DAA520; margin-right: 8px;"></i>Combata a Queda:
+                        Soluções e Produtos Eficazes</h2>
                     <p>Descubra as causas da queda de cabelo e os tratamentos mais eficazes, incluindo produtos e
                         técnicas para fortalecer seus fios e estimular o crescimento.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article4')">
@@ -638,7 +647,8 @@
                 <img src="https://images.unsplash.com/photo-1596464522867-b12a87a1770d?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Cabelos finos com volume">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-feather-alt" style="color: #DAA520; margin-right: 8px;"></i>Volumize e Fortaleça: Cuidado para Cabelos Finos</h2>
+                    <h2><i class="fas fa-feather-alt" style="color: #DAA520; margin-right: 8px;"></i>Volumize e
+                        Fortaleça: Cuidado para Cabelos Finos</h2>
                     <p>Saiba como dar volume, encorpar e fortalecer cabelos finos e ralos com as melhores técnicas de
                         hidratação, umectação e produtos específicos.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article5')">
@@ -675,7 +685,8 @@
                 <img src="https://images.unsplash.com/photo-1628793836746-b6b80145c276?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Tratamento de botox capilar">
                 <div class="blog-card-content">
-                    <h2><i class="fas fa-magic" style="color: #DAA520; margin-right: 8px;"></i>Controle e Tratamento: Volume, Botox e Ampolas</h2>
+                    <h2><i class="fas fa-magic" style="color: #DAA520; margin-right: 8px;"></i>Controle e Tratamento:
+                        Volume, Botox e Ampolas</h2>
                     <p>Conheça as melhores técnicas para reduzir o volume, os benefícios do botox capilar e como as
                         ampolas podem transformar seus fios completamente.</p>
                     <button class="btn-read-more" onclick="toggleArticle('article6')">

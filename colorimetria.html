@@ -72,7 +72,6 @@
       margin-bottom: 15px;
     }
 
-    /* Menu de navegação */
     .nav-menu {
       display: flex;
       flex-wrap: nowrap;
@@ -82,23 +81,28 @@
       margin-bottom: 15px;
       padding: 10px 10px;
       scrollbar-width: none;
+      /* Firefox */
     }
 
     .nav-menu::-webkit-scrollbar {
       display: none;
+      /* Chrome, Safari, Edge */
     }
 
     .nav-menu a {
       flex: 0 0 auto;
+      /* Não encolher, não crescer */
       min-width: 100px;
+      /* Largura mínima para botões */
       color: #fff;
       text-decoration: none;
       font-size: 15px;
       padding: 10px 22px;
       border-radius: 22px;
       background: rgba(255, 255, 255, 0.10);
+      /* Fundo translúcido */
       box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
+      transition: var(--transition-speed) ease;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
@@ -112,13 +116,15 @@
     }
 
     .nav-menu a:hover,
-    .nav-menu a:focus {
-      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
+    .nav-menu a:focus,
+    .nav-menu a.active {
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(155, 89, 182, 0.18), 0 2px 8px 0 rgba(243, 156, 18, 0.10);
+      box-shadow: 0 4px 18px 0 rgba(156, 39, 176, 0.18), 0 2px 8px 0 rgba(255, 112, 67, 0.10);
       transform: translateY(-2px) scale(1.04);
       outline: none;
     }
+
 
     /* Barra de busca */
     .search-bar {
@@ -735,15 +741,16 @@
       <p>Descubra suas cores ideais com colorimetria</p>
     </div>
 
-    <!-- Menu com 7 links e ícones femininos -->
     <nav class="nav-menu">
-      <a href="index.html"><i class="fas fa-home"></i> Início</a>
-      <a href="cortes_index.html"><i class="fas fa-cut"></i> Cortes</a>
-      <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
-      <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-      <a href="visagismo.html"><i class="fas fa-female"></i> Visagismo</a>
-      <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
-      <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Início</a>
+      <a href="index.html#services-section" class="nav-link"><i class="fas fa-cut"></i> Serviços</a>
+      <a href="index.html#portfolio-section" class="nav-link"><i class="fas fa-images"></i> Portfólio</a>
+      <a href="index.html#contact-section" class="nav-link"><i class="fas fa-phone-alt"></i> Contato</a>
+      <a href="#intro-section" class="nav-link" data-target="intro-section"><i class="fas fa-palette"></i> Cores</a>
+      <a href="produtos_index.html" class="nav-link"><i class="fas fa-shopping-bag"></i> Produtos</a>
+      <a href="visagismo.html" class="nav-link"><i class="fas fa-female"></i> Visagismo</a>
+      <a href="colorimetria.html" class="nav-link"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+      <a href="blog_index.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
     </nav>
 
     <!-- Barra de busca -->
@@ -755,9 +762,13 @@
 
   <!-- Conteúdo principal -->
   <div class="main-container">
-    <div class="section-title">
-      <h2>Quiz de Colorimetria</h2>
-      <p>Descubra seu tom de pele e as cores de cabelo que mais harmonizam com você</p>
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="quiz-container" style="margin-bottom: 10px; text-align: center;">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3 header-title">💫 Quiz de Colorimetria</h2>
+          <p class="text-base md:text-lg text-gray-600">Descubra seu tom de pele e as cores de cabelo que mais harmonizam com você</p>
+        </div>
+      </div>
     </div>
 
     <div class="quiz-container">
@@ -1260,7 +1271,7 @@
 
     function displayAnalysisResults(analysis) {
       const container = document.getElementById('colorAnalysisResult');
-      
+
       container.innerHTML = `
         <div class="skin-tone-display">
           <div class="skin-tone-sample" style="background-color: ${analysis.skinColor};"></div>
@@ -1273,7 +1284,7 @@
 
       const colorsContainer = document.getElementById('recommendedColors');
       let colorsHtml = '<h4>Cores Recomendadas para Você:</h4><div class="colors-palette">';
-      
+
       analysis.colors.forEach(color => {
         colorsHtml += `
           <div class="color-item">
@@ -1282,7 +1293,7 @@
           </div>
         `;
       });
-      
+
       colorsHtml += '</div>';
       colorsContainer.innerHTML = colorsHtml;
     }
@@ -1290,7 +1301,7 @@
     function displayRecommendedProducts(analysisKey) {
       const productList = products[analysisKey] || products['default'];
       const container = document.getElementById('productsGrid');
-      
+
       let html = '';
       productList.forEach(product => {
         html += `
@@ -1307,7 +1318,7 @@
           </div>
         `;
       });
-      
+
       container.innerHTML = html;
       document.getElementById('productsSection').style.display = 'block';
     }
