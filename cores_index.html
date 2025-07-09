@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore as melhores técnicas de cores e mechas com Hair by Márcio. Escolha entre balayage, ombré, luzes e coloração completa para um visual único.">
-  <meta name="keywords" content="hair by márcio, cores e mechas, balayage, ombré, luzes, coloração capilar">
-  <meta property="og:title" content="Hair by Márcio - Cores e Mechas">
-  <meta property="og:description" content="Transforme seu cabelo com nossas técnicas de coloração e mechas personalizadas.">
-  <meta property="og:image" content="https://example.com/hair-by-marcio-og-image.jpg">
-  <meta property="og:url" content="https://hairbymarcio.com/cores-mechas">
-  <title>Cores e Mechas | Hair by Márcio</title>
+  <title>Hair by Márcio - Cores e Mechas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -19,31 +13,26 @@
       box-sizing: border-box;
       font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
     }
-    
+
     body {
       background: #f5f5f5;
       color: #333;
       padding-top: 180px;
+      /* Aumentado para acomodar o menu */
     }
-    
+
+    /* Container para o Three.js */
     #header-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 180px;
+      /* Aumentado para acomodar o menu */
       z-index: 90;
-      background: linear-gradient(45deg, #6e48aa, #9d50bb, #d53a9d);
-      background-size: 400%;
-      animation: gradientAnimation 15s ease infinite;
     }
-    
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
+
+    /* Header com conteúdo */
     header {
       position: fixed;
       top: 0;
@@ -55,60 +44,86 @@
       z-index: 100;
       background: transparent;
     }
-    
+
     .logo {
       margin-bottom: 10px;
     }
-    
+
     header h1 {
       font-size: 24px;
       margin-bottom: 5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
+
     header p {
       font-size: 14px;
       opacity: 0.9;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       margin-bottom: 15px;
     }
-    
+
+    /* Menu de navegação */
     .nav-menu {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 12px;
       margin-bottom: 15px;
+      padding: 10px 10px;
+      scrollbar-width: none;
+      /* Firefox */
     }
-    
+
+    .nav-menu::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari */
+    }
+
     .nav-menu a {
-      color: white;
+      flex: 0 0 auto;
+      min-width: 100px;
+      color: #fff;
       text-decoration: none;
-      font-size: 14px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: all 0.3s;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      font-size: 15px;
+      padding: 10px 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.10);
+      box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
+      transition:
+        background 0.25s,
+        color 0.25s,
+        box-shadow 0.25s,
+        transform 0.18s;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 7px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
-    
+
     .nav-menu a i {
-      font-size: 16px;
+      font-size: 17px;
     }
-    
-    .nav-menu a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px 0 rgba(147, 87, 187, 0.18), 0 2px 8px 0 rgba(232, 157, 66, 0.10);
+      transform: translateY(-2px) scale(1.04);
+      outline: none;
     }
-    
+
+
+    /* Barra de busca */
     .search-bar {
       display: flex;
       justify-content: center;
       padding: 0 10px;
     }
-    
+
     .search-bar input {
       width: 70%;
       max-width: 400px;
@@ -116,11 +131,11 @@
       border: none;
       border-radius: 20px 0 0 20px;
       outline: none;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       font-size: 14px;
     }
-    
+
     .search-bar button {
       padding: 10px 15px;
       border: none;
@@ -128,96 +143,104 @@
       color: white;
       border-radius: 0 20px 20px 0;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: all 0.3s;
     }
-    
+
     .search-bar button:hover {
       background: #ef731a;
     }
-    
+
+    /* Conteúdo principal */
     .carousel {
       display: flex;
       flex-direction: column;
       gap: 25px;
       padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 100%;
+      overflow-y: auto;
     }
-    
+
     .color-card {
+      /* Changed from haircut-card */
       background: white;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
     }
-    
+
     .color-card:hover {
+      /* Changed from haircut-card */
       transform: translateY(-5px);
     }
-    
+
     .color-card img {
       width: 100%;
       height: 250px;
       object-fit: cover;
       transition: opacity 0.5s ease;
     }
-    
+
     .color-card h3 {
       padding: 15px;
       font-size: 18px;
       border-bottom: 1px solid #eee;
     }
-    
+
     .options {
       padding: 15px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
-    
-    .options select, .options button {
+
+    .options select,
+    .options button {
       padding: 8px 12px;
       border-radius: 8px;
       border: 1px solid #ddd;
       background: white;
       font-size: 14px;
+      flex: 1 1 120px;
+      min-width: 0;
     }
-    
+
     .options button {
       background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
       color: white;
       border: none;
       cursor: pointer;
+      transition: background 0.3s;
       flex-grow: 1;
     }
-    
+
     .options button:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
+      background: linear-gradient(90deg, #9357bb 0%, #e89d42 100%);
     }
-    
+
     footer {
       text-align: center;
       padding: 25px 20px;
       background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-      border-top: 1px solid rgba(0,0,0,0.1);
-      margin-top: 50px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
-    
+
     .footer-content {
       max-width: 600px;
       margin: 0 auto;
     }
-    
+
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 20px;
       margin: 15px 0;
     }
-    
+
     .social-icons a {
       display: flex;
       align-items: center;
@@ -229,135 +252,149 @@
       font-size: 18px;
       text-decoration: none;
       transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    
-    .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
-    .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
-    .facebook { background: linear-gradient(45deg, #1877F2, #0A5F9E); }
-    
+
+    .instagram {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    }
+
+    .whatsapp {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+    }
+
+    .facebook {
+      background: linear-gradient(45deg, #1877F2, #0A5F9E);
+    }
+
     .social-icons a:hover {
       transform: translateY(-3px);
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .copyright {
       font-size: 12px;
       color: #777;
       margin-top: 15px;
     }
-    
+
+    /* Responsividade para mobile */
     @media (max-width: 768px) {
       body {
         padding-top: 160px;
       }
-      
+
       #header-bg {
         height: 160px;
       }
-      
+
       header h1 {
         font-size: 20px;
       }
-      
+
       header p {
         font-size: 12px;
         margin-bottom: 10px;
       }
-      
+
       .nav-menu {
         gap: 5px;
         margin-bottom: 10px;
       }
-      
+
       .nav-menu a {
         font-size: 12px;
         padding: 5px 8px;
       }
-      
+
       .nav-menu a i {
         font-size: 14px;
       }
-      
+
       .search-bar input {
-        width: 100%;
-        max-width: 300px;
         padding: 8px 10px;
         font-size: 12px;
       }
-      
+
       .search-bar button {
         padding: 8px 12px;
       }
-      
+
       .carousel {
         padding: 15px;
+        gap: 20px;
       }
-      
+
       .color-card h3 {
+        /* Changed from haircut-card */
+        padding: 12px;
         font-size: 16px;
       }
+
+      .options {
+        padding: 12px;
+        gap: 8px;
+      }
+
+      .options select,
+      .options button {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
     }
-    
+
     @media (max-width: 480px) {
       body {
         padding-top: 140px;
       }
-      
+
       #header-bg {
         height: 140px;
       }
-      
+
       .logo {
         margin-bottom: 5px;
       }
-      
+
       .nav-menu {
         gap: 3px;
       }
-      
+
       .nav-menu a {
         font-size: 11px;
         padding: 4px 6px;
       }
-      
+
       .nav-menu a i {
         display: none;
+        /* Esconde ícones em telas muito pequenas */
       }
-      
+
       .search-bar {
         padding: 0 5px;
       }
-      
+
       .search-bar input {
-        width: 100%;
-        max-width: 250px;
+        width: 65%;
         padding: 6px 8px;
       }
-      
+
       .search-bar button {
         padding: 6px 10px;
-      }
-      
-      .options {
-        flex-direction: column;
-      }
-      
-      .options select, .options button {
-        width: 100%;
       }
     }
   </style>
 </head>
+
 <body>
   <div id="header-bg"></div>
-  
+
   <header>
     <div class="logo">
       <h1>HAIR BY MÁRCIO</h1>
-      <p>Transforme seu visual com cores e mechas únicas</p>
+      <p>Cores e Mechas que Transformam</p>
     </div>
-    
+
     <nav class="nav-menu">
       <a href="index.html"><i class="fas fa-home"></i> Início</a>
       <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
@@ -365,11 +402,12 @@
       <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
       <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
       <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+      <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
     </nav>
-    
+
     <div class="search-bar">
-      <input type="text" placeholder="Buscar cores ou técnicas..." id="searchInput" aria-label="Pesquisar cores e mechas">
-      <button onclick="searchColors()" aria-label="Pesquisar"><i class="fas fa-search"></i></button>
+      <input type="text" placeholder="Buscar cores..." id="searchInput">
+      <button onclick="searchColors()"><i class="fas fa-search"></i></button>
     </div>
   </header>
 
@@ -379,9 +417,9 @@
   <footer>
     <div class="footer-content">
       <div class="social-icons">
-        <a href="#" class="instagram" title="Instagram" aria-label="Visite nosso Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="whatsapp" title="WhatsApp" aria-label="Entre em contato pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="facebook" title="Facebook" aria-label="Visite nossa página no Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
       <div class="copyright">
         © 2025 Hair by Márcio - Todos os direitos reservados
@@ -389,191 +427,306 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const imageDatabase = {
-      "balayage": {
-        "loiro": {
-          "liso": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-        },
-        "castanho": {
-          "liso": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
+    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    function initGradientBackground() {
+      const container = document.getElementById('header-bg');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // Cena
+      const scene = new THREE.Scene();
+
+      // Câmera Ortográfica
+      const camera = new THREE.OrthographicCamera(
+        width / -2, width / 2, height / 2, height / -2, 1, 1000
+      );
+      camera.position.z = 2;
+
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+      });
+      renderer.setSize(width, height);
+      container.appendChild(renderer.domElement);
+
+      // Geometria
+      const geometry = new THREE.PlaneGeometry(width, height);
+
+      // Material com Shader
+      const uniforms = {
+        time: { type: "f", value: 0 },
+        resolution: { type: "v2", value: new THREE.Vector2(width, height) }
+      };
+
+      const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          varying vec2 vUv;
+          
+          void main() {
+            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
+            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
+            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
+            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
+            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+
+            float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
+            float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
+            float wave3 = sin(time * 0.7 + vUv.x * 5.0 + vUv.y * 5.0) * 0.5 + 0.5;
+
+            vec3 color = mix(color1, color2, wave1);
+            color = mix(color, color3, wave2 * 0.5);
+            color = mix(color, color4, wave3 * 0.3);
+
+            gl_FragColor = vec4(color, 0.92);
+          }
+        `,
+        transparent: true
+      });
+
+      // Mesh
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      // Animação
+      function animate() {
+        requestAnimationFrame(animate);
+        uniforms.time.value += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      // Redimensionamento
+      window.addEventListener('resize', () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        camera.left = width / -2;
+        camera.right = width / 2;
+        camera.top = height / 2;
+        camera.bottom = height / -2;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(width, height);
+        uniforms.resolution.value.set(width, height);
+
+        mesh.geometry.dispose();
+        mesh.geometry = new THREE.PlaneGeometry(width, height);
+      });
+
+      animate();
+    }
+
+    // ================= DADOS E FUNÇÕES PARA CORES =================
+    // Simplificado, pode ser expandido para diferentes imagens por combinação
+    const imageDatabaseColors = {
+      // Example structure, currently not fully utilized for all combinations
+      "blonde": {
+        "mechas": {
+          "quente": "https://images.unsplash.com/photo-1574695326531-155e966f914d?w=500&auto=format&fit=crop&q=60", // warm blonde highlights
+          "frio": "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60" // cool blonde highlights
         }
       },
-      "ombre": {
-        "loiro": {
-          "liso": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-        },
-        "colorido": {
-          "liso": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
+      "brown": {
+        "ombré": {
+          "neutro": "https://images.unsplash.com/photo-1596468114090-e7943015b634?w=500&auto=format&fit=crop&q=60" // ombre on brown
         }
       },
-      "luzes": {
-        "loiro": {
-          "liso": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-        },
-        "mel": {
-          "liso": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-        }
-      },
-      "coloracao-completa": {
-        "preto": {
-          "liso": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-        },
-        "vermelho": {
-          "liso": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-          "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-          "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
+      "gray": {
+        "natural": {
+          "neutro": "https://images.unsplash.com/photo-1596468114090-e7943015b634?w=500&auto=format&fit=crop&q=60"
         }
       }
     };
 
-    const colorServices = [
+    const hairColors = [
       {
         id: 1,
-        name: "Balayage",
-        baseImage: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-        colors: ["Loiro", "Castanho"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "balayage"
+        name: "Louro Platinado",
+        baseImage: "https://images.unsplash.com/photo-1597248375080-b74a3625f4d8?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Louro"],
+        techniques: ["Global", "Mechas"],
+        undertones: ["Frio", "Neutro"],
+        type: "blonde"
       },
       {
         id: 2,
-        name: "Ombré",
-        baseImage: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-        colors: ["Loiro", "Colorido"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "ombre"
+        name: "Louro Caramelo",
+        baseImage: "https://images.unsplash.com/photo-1574695326531-155e966f914d?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Louro"],
+        techniques: ["Global", "Ombré"],
+        undertones: ["Quente", "Neutro"],
+        type: "blonde"
       },
       {
         id: 3,
-        name: "Luzes",
-        baseImage: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-        colors: ["Loiro", "Mel"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "luzes"
+        name: "Ruivo Acobreado",
+        baseImage: "https://images.unsplash.com/photo-1591876523912-2d8c1c5e4b17?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Ruivo"],
+        techniques: ["Global", "Mechas"],
+        undertones: ["Quente"],
+        type: "red"
       },
       {
         id: 4,
-        name: "Coloração Completa",
-        baseImage: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60",
-        colors: ["Preto", "Vermelho"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "coloracao-completa"
+        name: "Castanho Iluminado",
+        baseImage: "https://images.unsplash.com/photo-1596468114090-e7943015b634?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Castanho"],
+        techniques: ["Ombré", "Pontos de Luz"],
+        undertones: ["Neutro", "Quente"],
+        type: "brown"
+      },
+      {
+        id: 5,
+        name: "Preto Azulado",
+        baseImage: "https://images.unsplash.com/photo-1622359487508-3a9d7b9c9e5e?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Preto"],
+        techniques: ["Global"],
+        undertones: ["Frio"],
+        type: "black"
+      },
+      {
+        id: 6,
+        name: "Cabelos Coloridos (Fantasia)",
+        baseImage: "https://images.unsplash.com/photo-1589140415391-76628c68f2fe?w=500&auto=format&fit=crop&q=60",
+        colorTypes: ["Colorido"],
+        techniques: ["Mechas", "Global", "Pontas"],
+        undertones: ["Variado"],
+        type: "fantasy"
+      },
+      {
+        id: 7,
+        name: "Grisalhas Naturais",
+        baseImage: "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60", // Placeholder for a cool/gray tone
+        colorTypes: ["Grisalho"],
+        techniques: ["Natural", "Matização", "Grombre"],
+        undertones: ["Frio", "Neutro"],
+        type: "gray"
       }
     ];
 
-    function updateImage(cardId) {
-      const card = document.querySelector(`.color-card[data-id="${cardId}"]`);
-      const service = colorServices.find(s => s.id === cardId);
-      
-      const color = card.querySelector('.color').value.toLowerCase();
-      const hairType = card.querySelector('.hair-type').value.toLowerCase();
-      
-      let newImage = service.baseImage;
-      
-      if (imageDatabase[service.type] && 
-          imageDatabase[service.type][color] && 
-          imageDatabase[service.type][color][hairType]) {
-        newImage = imageDatabase[service.type][color][hairType];
+    function updateImageColor(cardId) {
+      const card = document.querySelector(`.color-card[data-id="${cardId}"]`); // Changed class
+      const color = hairColors.find(c => c.id === cardId);
+
+      const technique = card.querySelector('.technique').value.toLowerCase(); // Changed from size
+      const undertone = card.querySelector('.undertone').value.toLowerCase(); // Changed from style
+      const colorType = card.querySelector('.color-type').value.toLowerCase(); // Changed from hair-type
+
+      let newImage = color.baseImage;
+
+      // This part would be expanded if imageDatabaseColors had more detailed entries
+      if (imageDatabaseColors[color.type] &&
+        imageDatabaseColors[color.type][technique] &&
+        imageDatabaseColors[color.type][technique][undertone]) {
+        newImage = imageDatabaseColors[color.type][technique][undertone];
       }
-      
+
       const imgElement = card.querySelector('img');
       imgElement.style.opacity = 0;
-      
+
       setTimeout(() => {
         imgElement.src = newImage;
         imgElement.style.opacity = 1;
       }, 200);
     }
 
-    function renderColorServices() {
+    function renderHairColors() { // Changed function name
       const carousel = document.getElementById('carousel');
-      let html = '';
-      
-      colorServices.forEach(service => {
-        html += `
-          <div class="color-card" data-id="${service.id}">
-            <img src="${service.baseImage}" alt="${service.name}">
-            <h3>${service.name}</h3>
+      carousel.innerHTML = '';
+
+      hairColors.forEach(color => {
+        const card = `
+          <div class="color-card" data-id="${color.id}"> <img src="${color.baseImage}" alt="${color.name}">
+            <h3>${color.name}</h3>
             <div class="options">
-              <select class="color" onchange="updateImage(${service.id})" aria-label="Selecionar cor">
-                ${service.colors.map(color => `<option value="${color.toLowerCase()}">${color}</option>`).join('')}
+              <select class="color-type" onchange="updateImageColor(${color.id})">
+                ${color.colorTypes.map(type => `<option value="${type.toLowerCase()}">${type}</option>`).join('')}
               </select>
-              <select class="hair-type" onchange="updateImage(${service.id})" aria-label="Selecionar tipo de cabelo">
-                ${service.hairTypes.map(type => `<option value="${type.toLowerCase()}">${type}</option>`).join('')}
+              <select class="technique" onchange="updateImageColor(${color.id})">
+                ${color.techniques.map(tech => `<option value="${tech.toLowerCase()}">${tech}</option>`).join('')}
               </select>
-              <button onclick="showProducts(${service.id})" aria-label="Ver produtos recomendados para ${service.name}">Produtos Recomendados</button>
-            </div>
+              <select class="undertone" onchange="updateImageColor(${color.id})">
+                ${color.undertones.map(tone => `<option value="${tone.toLowerCase()}">${tone}</option>`).join('')}
+              </select>
+              <button onclick="showProductsColor(${color.id})"><i class="fas fa-shopping-basket"></i> PRODUTOS</button> </div>
           </div>
         `;
+        carousel.innerHTML += card;
       });
-      
-      carousel.innerHTML = html;
     }
 
-    function searchColors() {
-      const term = document.getElementById('searchInput').value.toLowerCase().trim();
-      
-      if (term === '') {
-        renderColorServices();
-        return;
-      }
-      
-      const filtered = colorServices.filter(service => 
-        service.name.toLowerCase().includes(term) ||
-        service.colors.some(color => color.toLowerCase().includes(term)) ||
-        service.hairTypes.some(type => type.toLowerCase().includes(term))
+    function searchColors() { // Changed function name
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = hairColors.filter(color => // Changed array name
+        color.name.toLowerCase().includes(term) ||
+        color.colorTypes.some(type => type.toLowerCase().includes(term)) ||
+        color.techniques.some(tech => tech.toLowerCase().includes(term)) ||
+        color.undertones.some(tone => tone.toLowerCase().includes(term))
       );
-      
-      const carousel = document.getElementById('carousel');
-      carousel.innerHTML = filtered.length > 0 
-        ? filtered.map(service => `
-            <div class="color-card" data-id="${service.id}">
-              <img src="${service.baseImage}" alt="${service.name}">
-              <h3>${service.name}</h3>
-              <div class="options">
-                <span>Tipos: ${service.hairTypes.join(", ")}</span>
-                <span>Cores: ${service.colors.join(", ")}</span>
+
+      if (term === '') renderHairColors(); // Changed function name
+      else {
+        document.getElementById('carousel').innerHTML = filtered.length > 0
+          ? filtered.map(color => `
+              <div class="color-card"> <img src="${color.baseImage}" alt="${color.name}">
+                <h3>${color.name}</h3>
+                <div class="options">
+                  <span>Cor: ${color.colorTypes.join(", ")}</span><br>
+                  <span>Técnica: ${color.techniques.join(", ")}</span>
+                </div>
               </div>
-            </div>
-          `).join('')
-        : '<p style="text-align:center;width:100%;padding:20px;">Nenhuma técnica de coloração encontrada</p>';
+            `).join('')
+          : '<p style="text-align:center;width:100%;padding:20px;">Nenhuma cor encontrada</p>';
+      }
     }
 
-    function showProducts(serviceId) {
-      const service = colorServices.find(s => s.id === serviceId);
-      const card = document.querySelector(`.color-card[data-id="${serviceId}"]`);
-      const color = card.querySelector('.color').value;
-      const hairType = card.querySelector('.hair-type').value;
-      
-      // Produtos específicos para cada técnica de coloração
+    function showProductsColor(colorId) { // Changed function name
+      const color = hairColors.find(c => c.id === colorId); // Changed array name
+      const card = document.querySelector(`.color-card[data-id="${colorId}"]`); // Changed class
+      const colorType = card.querySelector('.color-type').value; // Changed
+      const technique = card.querySelector('.technique').value; // Changed
+      const undertone = card.querySelector('.undertone').value; // Changed
+
+      // Produtos específicos para cada tipo de coloração
+      let shampooUrl = `https://lista.mercadolivre.com.br/shampoo-cabelo-colorido`;
+      let maskUrl = `https://lista.mercadolivre.com.br/mascara-hidratacao-cabelo-colorido`;
+      let leaveinUrl = `https://lista.mercadolivre.com.br/leave-in-protecao-cor`;
+      let protectorUrl = `https://lista.mercadolivre.com.br/protetor-termico-cabelo-colorido`;
+
+      if (colorType === 'grisalho') {
+        shampooUrl = `https://lista.mercadolivre.com.br/shampoo-matizador-grisalho`;
+        maskUrl = `https://lista.mercadolivre.com.br/mascara-matizadora-grisalho`;
+      } else if (undertone === 'frio' || technique.includes('platinado')) {
+        shampooUrl = `https://lista.mercadolivre.com.br/shampoo-matizador-${colorType}`;
+        maskUrl = `https://lista.mercadolivre.com.br/mascara-matizadora-${colorType}`;
+      } else if (undertone === 'quente') {
+        shampooUrl = `https://lista.mercadolivre.com.br/shampoo-cabelo-colorido-${colorType}-quente`;
+        maskUrl = `https://lista.mercadolivre.com.br/mascara-nutritiva-cabelo-colorido-${colorType}-quente`;
+      }
+
       const products = {
-        shampoo: `https://lista.mercadolivre.com.br/shampoo-protetor-cor-${hairType}`,
-        mascara: service.type.includes('coloracao-completa') ? 
-          'https://lista.mercadolivre.com.br/tonalizante-manutencao-cor' : 
-          'https://lista.mercadolivre.com.br/mascara-hidratacao-cabelo',
-        protetor: 'https://lista.mercadolivre.com.br/spray-protetor-termico-cabelo'
+        shampoo: shampooUrl,
+        mask: maskUrl,
+        leavein: leaveinUrl,
+        protector: protectorUrl
       };
-      
+
       const productWindow = window.open('', '_blank', 'width=600,height=500');
       productWindow.document.write(`
         <html>
           <head>
-            <title>Produtos para ${service.name}</title>
+            <title>Produtos para ${color.name}</title>
             <style>
               body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
               .product { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -584,25 +737,31 @@
             </style>
           </head>
           <body>
-            <h2>Produtos Recomendados para ${service.name}</h2>
-            <p><strong>Configuração:</strong> ${color}, ${hairType}</p>
+            <h2>Produtos Recomendados para ${color.name}</h2>
+            <p><strong>Configuração:</strong> ${colorType.charAt(0).toUpperCase() + colorType.slice(1)}, ${technique.charAt(0).toUpperCase() + technique.slice(1)}, ${undertone.charAt(0).toUpperCase() + undertone.slice(1)}</p>
             
             <div class="product">
-              <h3>1. Shampoo Protetor de Cor</h3>
-              <p>Protege e mantém a cor vibrante por mais tempo</p>
+              <h3>1. Shampoo</h3>
+              <p>${colorType === 'grisalho' ? 'Específico para manter o tom prateado e neutralizar amarelados.' : 'Essencial para manter a cor vibrante e prolongar a durabilidade da sua coloração.'}</p>
               <a href="${products.shampoo}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
             </div>
             
             <div class="product">
-              <h3>2. Máscara de Hidratação para Cabelos ${hairType.charAt(0).toUpperCase() + hairType.slice(1)}s</h3>
-              <p>Hidratação profunda para cabelos coloridos</p>
-              <a href="${products.mascara}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+              <h3>2. Máscara</h3>
+              <p>${colorType === 'grisalho' ? 'Máscara matizadora para realçar o brilho e a uniformidade dos fios grisalhos.' : (undertone === 'frio' || technique.includes('mechas') ? 'Para neutralizar tons indesejados (amarelos/laranjas) e realçar o brilho.' : 'Nutrição profunda para cabelos quimicamente tratados, repondo a massa capilar.')}</p>
+              <a href="${products.mask}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
             </div>
-            
+
             <div class="product">
-              <h3>3. ${service.type.includes('coloracao-completa') ? 'Tonalizante para Manutenção de Cor' : 'Spray Protetor Térmico'}</h3>
-              <p>Proteção e manutenção da cor ideal</p>
-              <a href="${products.protetor}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+              <h3>3. Leave-in com Proteção da Cor</h3>
+              <p>Protege contra agressões externas e sela as cutículas, mantendo a cor intensa e o brilho.</p>
+              <a href="${products.leavein}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+            </div>
+
+            <div class="product">
+              <h3>4. Protetor Térmico para Cabelos Coloridos</h3>
+              <p>Indispensável antes de usar ferramentas de calor (secador, chapinha), protegendo a cor e a saúde do fio.</p>
+              <a href="${products.protector}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
@@ -613,10 +772,12 @@
       `);
     }
 
+    // Inicialização
     window.addEventListener('load', () => {
-      renderColorServices();
+      initGradientBackground();
+      renderHairColors(); // Changed function name
     });
   </script>
 </body>
-</html>
 
+</html>

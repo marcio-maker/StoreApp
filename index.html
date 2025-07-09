@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hair by Márcio - Transforme seu visual com cortes modernos, cores exclusivas e produtos profissionais. Agende sua consulta e descubra seu estilo único.">
-  <meta name="keywords" content="hair by márcio, cabeleireiro, cortes masculinos, coloração, visagismo, colorimetria, produtos capilares">
+  <meta name="description"
+    content="Hair by Márcio - Transforme seu visual com cortes modernos, cores exclusivas e produtos profissionais. Agende sua consulta e descubra seu estilo único.">
+  <meta name="keywords"
+    content="hair by márcio, cabeleireiro, cortes masculinos, coloração, visagismo, colorimetria, produtos capilares">
   <meta property="og:title" content="Hair by Márcio - Transforme seu Visual">
-  <meta property="og:description" content="Especialista em cortes modernos, coloração e visagismo. Descubra seu estilo único conosco.">
+  <meta property="og:description"
+    content="Especialista em cortes modernos, coloração e visagismo. Descubra seu estilo único conosco.">
   <meta property="og:image" content="https://example.com/hair-by-marcio-og-image.jpg">
   <meta property="og:url" content="https://hairbymarcio.com">
   <title>Hair by Márcio - Transforme seu Visual</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap"
+    rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -19,13 +25,13 @@
       box-sizing: border-box;
       font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
     }
-    
+
     body {
       background: #f5f5f5;
       color: #333;
       overflow-x: hidden;
     }
-    
+
     /* Container para o Three.js */
     #header-bg {
       position: fixed;
@@ -35,7 +41,7 @@
       height: 180px;
       z-index: 90;
     }
-    
+
     /* Header com conteúdo */
     header {
       position: fixed;
@@ -48,62 +54,86 @@
       z-index: 100;
       background: transparent;
     }
-    
+
     .logo {
       margin-bottom: 10px;
     }
-    
+
     header h1 {
       font-size: 24px;
       margin-bottom: 5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
+
     header p {
       font-size: 14px;
       opacity: 0.9;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       margin-bottom: 15px;
     }
-    
+
     /* Menu de navegação */
     .nav-menu {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 12px;
       margin-bottom: 15px;
+      padding: 10px 10px;
+      scrollbar-width: none;
+      /* Firefox */
     }
-    
+
+    .nav-menu::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari */
+    }
+
     .nav-menu a {
-      color: white;
+      flex: 0 0 auto;
+      min-width: 100px;
+      color: #fff;
       text-decoration: none;
-      font-size: 14px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: all 0.3s;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      font-size: 15px;
+      padding: 10px 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.10);
+      box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
+      transition:
+        background 0.25s,
+        color 0.25s,
+        box-shadow 0.25s,
+        transform 0.18s;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 7px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
-    
+
     .nav-menu a i {
-      font-size: 16px;
+      font-size: 17px;
     }
-    
-    .nav-menu a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px 0 rgba(147, 87, 187, 0.18), 0 2px 8px 0 rgba(232, 157, 66, 0.10);
+      transform: translateY(-2px) scale(1.04);
+      outline: none;
     }
-    
+
+
     /* Barra de busca */
     .search-bar {
       display: flex;
       justify-content: center;
       padding: 0 10px;
     }
-    
+
     .search-bar input {
       width: 70%;
       max-width: 400px;
@@ -111,11 +141,11 @@
       border: none;
       border-radius: 20px 0 0 20px;
       outline: none;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       font-size: 14px;
     }
-    
+
     .search-bar button {
       padding: 10px 15px;
       border: none;
@@ -123,10 +153,10 @@
       color: white;
       border-radius: 0 20px 20px 0;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: all 0.3s;
     }
-    
+
     .search-bar button:hover {
       background: #ef731a;
     }
@@ -141,7 +171,7 @@
       overflow: hidden;
       margin-top: 180px;
     }
-    
+
     .hero-video {
       position: absolute;
       top: 0;
@@ -151,7 +181,7 @@
       object-fit: cover;
       z-index: 1;
     }
-    
+
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -161,7 +191,7 @@
       background: linear-gradient(45deg, rgba(34, 74, 97, 0.8), rgba(218, 192, 92, 0.6), rgba(115, 33, 58, 0.7));
       z-index: 2;
     }
-    
+
     .hero-content {
       position: relative;
       z-index: 3;
@@ -170,23 +200,23 @@
       max-width: 800px;
       padding: 0 20px;
     }
-    
+
     .hero-content h2 {
       font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
-      text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       animation: fadeInUp 1s ease-out;
     }
-    
+
     .hero-content p {
       font-size: 1.3rem;
       margin-bottom: 30px;
       opacity: 0.95;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       animation: fadeInUp 1s ease-out 0.3s both;
     }
-    
+
     .hero-buttons {
       display: flex;
       gap: 20px;
@@ -194,7 +224,7 @@
       flex-wrap: wrap;
       animation: fadeInUp 1s ease-out 0.6s both;
     }
-    
+
     .hero-btn {
       padding: 15px 30px;
       border: none;
@@ -208,23 +238,23 @@
       align-items: center;
       gap: 10px;
     }
-    
+
     .btn-primary {
       background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
       color: white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-    
+
     .btn-secondary {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       color: white;
-      border: 2px solid rgba(255,255,255,0.3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(10px);
     }
-    
+
     .hero-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
     /* Seções de Conteúdo */
@@ -233,26 +263,26 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .section-title {
       text-align: center;
       margin-bottom: 50px;
     }
-    
+
     .section-title h2 {
       font-size: 2.5rem;
       color: #333;
       margin-bottom: 15px;
       position: relative;
     }
-    
+
     .section-title p {
       font-size: 1.1rem;
       color: #666;
       max-width: 600px;
       margin: 0 auto;
     }
-    
+
     /* Grid de Serviços */
     .services-grid {
       display: grid;
@@ -260,18 +290,18 @@
       gap: 30px;
       margin-top: 50px;
     }
-    
+
     .service-card {
       background: white;
       border-radius: 20px;
       padding: 40px 30px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
     }
-    
+
     .service-card::before {
       content: '';
       position: absolute;
@@ -281,12 +311,12 @@
       height: 4px;
       background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
     }
-    
+
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     }
-    
+
     .service-icon {
       width: 80px;
       height: 80px;
@@ -299,19 +329,19 @@
       font-size: 2rem;
       color: white;
     }
-    
+
     .service-card h3 {
       font-size: 1.5rem;
       margin-bottom: 15px;
       color: #333;
     }
-    
+
     .service-card p {
       color: #666;
       line-height: 1.6;
       margin-bottom: 20px;
     }
-    
+
     .service-btn {
       background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
       color: white;
@@ -323,10 +353,10 @@
       text-decoration: none;
       display: inline-block;
     }
-    
+
     .service-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     /* Seção Sobre */
@@ -334,7 +364,7 @@
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       padding: 80px 20px;
     }
-    
+
     .about-content {
       max-width: 1000px;
       margin: 0 auto;
@@ -343,26 +373,26 @@
       gap: 50px;
       align-items: center;
     }
-    
+
     .about-text h2 {
       font-size: 2.5rem;
       color: #333;
       margin-bottom: 20px;
     }
-    
+
     .about-text p {
       color: #666;
       line-height: 1.8;
       margin-bottom: 20px;
     }
-    
+
     .about-image {
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     }
-    
+
     .about-image img {
       width: 100%;
       height: 400px;
@@ -376,12 +406,12 @@
       padding: 80px 20px;
       text-align: center;
     }
-    
+
     .cta-content h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
-    
+
     .cta-content p {
       font-size: 1.2rem;
       margin-bottom: 30px;
@@ -392,7 +422,7 @@
       text-align: center;
       padding: 25px 20px;
       background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-      border-top: 1px solid rgba(0,0,0,0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .footer-content {
@@ -418,18 +448,26 @@
       font-size: 18px;
       text-decoration: none;
       transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
-    .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
-    .facebook { background: linear-gradient(45deg, #1877F2, #0A5F9E); }
-    
+    .instagram {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    }
+
+    .whatsapp {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+    }
+
+    .facebook {
+      background: linear-gradient(45deg, #1877F2, #0A5F9E);
+    }
+
     .social-icons a:hover {
       transform: translateY(-3px);
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .copyright {
       font-size: 12px;
       color: #777;
@@ -442,6 +480,7 @@
         opacity: 0;
         transform: translateY(30px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -453,83 +492,83 @@
       #header-bg {
         height: 160px;
       }
-      
+
       header h1 {
         font-size: 20px;
       }
-      
+
       header p {
         font-size: 12px;
         margin-bottom: 10px;
       }
-      
+
       .nav-menu {
         gap: 5px;
         margin-bottom: 10px;
       }
-      
+
       .nav-menu a {
         font-size: 12px;
         padding: 5px 8px;
       }
-      
+
       .nav-menu a i {
         font-size: 14px;
       }
-      
+
       .search-bar input {
         width: 100%;
         max-width: 300px;
         padding: 8px 10px;
         font-size: 12px;
       }
-      
+
       .search-bar button {
         padding: 8px 12px;
       }
-      
+
       .hero-section {
         margin-top: 160px;
         height: 80vh;
       }
-      
+
       .hero-content h2 {
         font-size: 2.5rem;
       }
-      
+
       .hero-content p {
         font-size: 1.1rem;
       }
-      
+
       .hero-buttons {
         flex-direction: column;
         align-items: center;
       }
-      
+
       .hero-btn {
         width: 100%;
         max-width: 300px;
         justify-content: center;
       }
-      
+
       .content-section {
         padding: 60px 20px;
       }
-      
+
       .section-title h2 {
         font-size: 2rem;
       }
-      
+
       .services-grid {
         grid-template-columns: 1fr;
         gap: 20px;
       }
-      
+
       .about-content {
         grid-template-columns: 1fr;
         gap: 30px;
       }
-      
+
       .about-text h2 {
         font-size: 2rem;
       }
@@ -539,50 +578,50 @@
       #header-bg {
         height: 140px;
       }
-      
+
       .logo {
         margin-bottom: 5px;
       }
-      
+
       .nav-menu {
         gap: 3px;
       }
-      
+
       .nav-menu a {
         font-size: 11px;
         padding: 4px 6px;
       }
-      
+
       .nav-menu a i {
         display: none;
       }
-      
+
       .search-bar {
         padding: 0 5px;
       }
-      
+
       .search-bar input {
         width: 100%;
         max-width: 250px;
         padding: 6px 8px;
       }
-      
+
       .search-bar button {
         padding: 6px 10px;
       }
-      
+
       .hero-section {
         margin-top: 140px;
       }
-      
+
       .hero-content h2 {
         font-size: 2rem;
       }
-      
+
       .hero-content p {
         font-size: 1rem;
       }
-      
+
       .hero-btn {
         padding: 12px 20px;
         font-size: 14px;
@@ -590,27 +629,29 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Gradiente animado com Three.js -->
   <div id="header-bg"></div>
-  
+
   <!-- Header com conteúdo -->
   <header>
     <div class="logo">
       <h1>HAIR BY MÁRCIO</h1>
       <p>Transforme seu visual com estilo único</p>
     </div>
-    
+
     <!-- Menu com 5 links e ícones -->
     <nav class="nav-menu">
-      <a href="#home"><i class="fas fa-home"></i> Início</a>
+      <a href="index.html"><i class="fas fa-home"></i> Início</a>
       <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
       <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
       <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
       <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
       <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+      <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
     </nav>
-    
+
     <!-- Barra de busca -->
     <div class="search-bar">
       <input type="text" placeholder="Buscar serviços..." id="searchInput">
@@ -621,14 +662,17 @@
   <!-- Hero Section com Vídeo -->
   <section class="hero-section" id="home">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+      <source
+        src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761"
+        type="video/mp4">
       <!-- Fallback para navegadores que não suportam vídeo -->
       Seu navegador não suporta vídeos HTML5.
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h2>Transforme Seu Visual</h2>
-      <p>Descubra seu estilo único com nossos serviços especializados em cortes modernos, coloração profissional e visagismo personalizado.</p>
+      <p>Descubra seu estilo único com nossos serviços especializados em cortes modernos, coloração profissional e
+        visagismo personalizado.</p>
       <div class="hero-buttons">
         <a href="#servicos" class="hero-btn btn-primary">
           <i class="fas fa-cut"></i> Nossos Serviços
@@ -646,26 +690,28 @@
       <h2>Nossos Serviços</h2>
       <p>Oferecemos uma gama completa de serviços para transformar e realçar sua beleza natural</p>
     </div>
-    
+
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-scissors"></i>
         </div>
         <h3>Cortes Modernos</h3>
-        <p>Cortes personalizados que combinam com seu estilo de vida e formato de rosto. Do clássico ao contemporâneo.</p>
+        <p>Cortes personalizados que combinam com seu estilo de vida e formato de rosto. Do clássico ao contemporâneo.
+        </p>
         <a href="cortes_index.html" class="service-btn">Explorar Cortes</a>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-palette"></i>
         </div>
         <h3>Coloração Profissional</h3>
-        <p>Técnicas avançadas de coloração: balayage, ombré, luzes e coloração completa com produtos de alta qualidade.</p>
+        <p>Técnicas avançadas de coloração: balayage, ombré, luzes e coloração completa com produtos de alta qualidade.
+        </p>
         <a href="cores_index.html" class="service-btn">Ver Cores</a>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-user-tie"></i>
@@ -674,7 +720,7 @@
         <p>Análise completa do seu perfil para encontrar o corte e estilo que mais valorizam suas características.</p>
         <a href="visagismo.html" class="service-btn">Fazer Quiz</a>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-eye-dropper"></i>
@@ -683,7 +729,7 @@
         <p>Estudo das cores que harmonizam com seu tom de pele, olhos e personalidade para um visual perfeito.</p>
         <a href="colorimetria.html" class="service-btn">Descobrir Cores</a>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-shopping-bag"></i>
@@ -692,14 +738,15 @@
         <p>Linha completa de produtos para manutenção e cuidados em casa. Qualidade profissional ao seu alcance.</p>
         <a href="produtos_index.html" class="service-btn">Ver Produtos</a>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">
-          <i class="fas fa-spa"></i>
+          <i class="fas fa-blog"></i>
         </div>
-        <h3>Tratamentos</h3>
-        <p>Hidratação, reconstrução e nutrição capilar para manter seus cabelos sempre saudáveis e bonitos.</p>
-        <a href="#tratamentos" class="service-btn">Saiba Mais</a>
+        <h3>Blog</h3>
+        <p>Dicas de cuidados, tendências, inspirações e novidades do universo da beleza para você se manter sempre
+          atualizado.</p>
+        <a href="blog.html" class="service-btn">Acessar Blog</a>
       </div>
     </div>
   </section>
@@ -709,12 +756,16 @@
     <div class="about-content">
       <div class="about-text">
         <h2>Sobre Márcio</h2>
-        <p>Com mais de 10 anos de experiência no mercado da beleza, Márcio é especialista em transformações capilares que valorizam a personalidade única de cada cliente.</p>
-        <p>Formado em visagismo e colorimetria, utiliza técnicas modernas e produtos de alta qualidade para garantir resultados excepcionais e duradouros.</p>
-        <p>Sua paixão é ajudar pessoas a descobrirem seu potencial de beleza através de cortes e cores que expressam sua verdadeira essência.</p>
+        <p>Com mais de 10 anos de experiência no mercado da beleza, Márcio é especialista em transformações capilares
+          que valorizam a personalidade única de cada cliente.</p>
+        <p>Formado em visagismo e colorimetria, utiliza técnicas modernas e produtos de alta qualidade para garantir
+          resultados excepcionais e duradouros.</p>
+        <p>Sua paixão é ajudar pessoas a descobrirem seu potencial de beleza através de cortes e cores que expressam sua
+          verdadeira essência.</p>
       </div>
       <div class="about-image">
-        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60" alt="Márcio - Cabeleireiro Profissional">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60"
+          alt="Márcio - Cabeleireiro Profissional">
       </div>
     </div>
   </section>
@@ -757,33 +808,33 @@
       const container = document.getElementById('header-bg');
       const width = container.clientWidth;
       const height = container.clientHeight;
-      
+
       // Cena
       const scene = new THREE.Scene();
-      
+
       // Câmera Ortográfica
       const camera = new THREE.OrthographicCamera(
         width / -2, width / 2, height / 2, height / -2, 1, 1000
       );
       camera.position.z = 2;
-      
+
       // Renderer
-      const renderer = new THREE.WebGLRenderer({ 
+      const renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true 
+        antialias: true
       });
       renderer.setSize(width, height);
       container.appendChild(renderer.domElement);
-      
+
       // Geometria
       const geometry = new THREE.PlaneGeometry(width, height);
-      
+
       // Material com Shader
       const uniforms = {
         time: { type: "f", value: 0 },
         resolution: { type: "v2", value: new THREE.Vector2(width, height) }
       };
-      
+
       const material = new THREE.ShaderMaterial({
         uniforms: uniforms,
         vertexShader: `
@@ -817,48 +868,48 @@
         `,
         transparent: true
       });
-      
+
       // Mesh
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
-      
+
       // Animação
       function animate() {
         requestAnimationFrame(animate);
         uniforms.time.value += 0.01;
         renderer.render(scene, camera);
       }
-      
+
       // Redimensionamento
       window.addEventListener('resize', () => {
         const width = container.clientWidth;
         const height = container.clientHeight;
-        
+
         camera.left = width / -2;
         camera.right = width / 2;
         camera.top = height / 2;
         camera.bottom = height / -2;
         camera.updateProjectionMatrix();
-        
+
         renderer.setSize(width, height);
         uniforms.resolution.value.set(width, height);
-        
+
         mesh.geometry.dispose();
         mesh.geometry = new THREE.PlaneGeometry(width, height);
       });
-      
+
       animate();
     }
 
     // ================= FUNCIONALIDADES DA PÁGINA =================
     function searchServices() {
       const term = document.getElementById('searchInput').value.toLowerCase();
-      
+
       if (term === '') {
         alert('Digite algo para buscar!');
         return;
       }
-      
+
       // Simular busca e redirecionar para página relevante
       if (term.includes('corte') || term.includes('cabelo')) {
         window.location.href = 'cortes_index.html';
@@ -895,12 +946,12 @@
     });
 
     // Permitir Enter na busca
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         searchServices();
       }
     });
   </script>
 </body>
-</html>
 
+</html>
