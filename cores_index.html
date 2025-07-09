@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hair by Márcio - Cores e Mechas</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -18,7 +19,6 @@
       background: #f5f5f5;
       color: #333;
       padding-top: 180px;
-      /* Aumentado para acomodar o menu */
     }
 
     /* Container para o Three.js */
@@ -28,7 +28,6 @@
       left: 0;
       width: 100%;
       height: 180px;
-      /* Aumentado para acomodar o menu */
       z-index: 90;
     }
 
@@ -72,12 +71,10 @@
       margin-bottom: 15px;
       padding: 10px 10px;
       scrollbar-width: none;
-      /* Firefox */
     }
 
     .nav-menu::-webkit-scrollbar {
       display: none;
-      /* Chrome, Safari */
     }
 
     .nav-menu a {
@@ -90,11 +87,7 @@
       border-radius: 22px;
       background: rgba(255, 255, 255, 0.10);
       box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition:
-        background 0.25s,
-        color 0.25s,
-        box-shadow 0.25s,
-        transform 0.18s;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
@@ -109,13 +102,12 @@
 
     .nav-menu a:hover,
     .nav-menu a:focus {
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9c27b0 0%, #ff7043 100%);
       color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(147, 87, 187, 0.18), 0 2px 8px 0 rgba(232, 157, 66, 0.10);
+      box-shadow: 0 4px 18px 0 rgba(156, 39, 176, 0.18), 0 2px 8px 0 rgba(255, 112, 67, 0.10);
       transform: translateY(-2px) scale(1.04);
       outline: none;
     }
-
 
     /* Barra de busca */
     .search-bar {
@@ -139,7 +131,7 @@
     .search-bar button {
       padding: 10px 15px;
       border: none;
-      background: #ff9a44;
+      background: #ff7043;
       color: white;
       border-radius: 0 20px 20px 0;
       cursor: pointer;
@@ -148,7 +140,7 @@
     }
 
     .search-bar button:hover {
-      background: #ef731a;
+      background: #ff5722;
     }
 
     /* Conteúdo principal */
@@ -162,7 +154,6 @@
     }
 
     .color-card {
-      /* Changed from haircut-card */
       background: white;
       border-radius: 15px;
       overflow: hidden;
@@ -174,7 +165,6 @@
     }
 
     .color-card:hover {
-      /* Changed from haircut-card */
       transform: translateY(-5px);
     }
 
@@ -210,7 +200,7 @@
     }
 
     .options button {
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9c27b0 0%, #ff7043 100%);
       color: white;
       border: none;
       cursor: pointer;
@@ -219,7 +209,7 @@
     }
 
     .options button:hover {
-      background: linear-gradient(90deg, #9357bb 0%, #e89d42 100%);
+      background: linear-gradient(90deg, #ff7043 0%, #9c27b0 100%);
     }
 
     footer {
@@ -326,7 +316,6 @@
       }
 
       .color-card h3 {
-        /* Changed from haircut-card */
         padding: 12px;
         font-size: 16px;
       }
@@ -367,7 +356,6 @@
 
       .nav-menu a i {
         display: none;
-        /* Esconde ícones em telas muito pequenas */
       }
 
       .search-bar {
@@ -397,10 +385,10 @@
 
     <nav class="nav-menu">
       <a href="index.html"><i class="fas fa-home"></i> Início</a>
-      <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
+      <a href="cortes_index.html"><i class="fas fa-cut"></i> Cortes</a>
       <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
       <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-      <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
+      <a href="visagismo.html"><i class="fas fa-female"></i> Visagismo</a>
       <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
       <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
     </nav>
@@ -427,24 +415,21 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
   <script>
-    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    // ================= THREE.JS - GRADIENTE ANIMADO (ROXO/CORAL) =================
     function initGradientBackground() {
       const container = document.getElementById('header-bg');
       const width = container.clientWidth;
       const height = container.clientHeight;
 
-      // Cena
       const scene = new THREE.Scene();
 
-      // Câmera Ortográfica
       const camera = new THREE.OrthographicCamera(
         width / -2, width / 2, height / 2, height / -2, 1, 1000
       );
       camera.position.z = 2;
 
-      // Renderer
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
@@ -452,10 +437,8 @@
       renderer.setSize(width, height);
       container.appendChild(renderer.domElement);
 
-      // Geometria
       const geometry = new THREE.PlaneGeometry(width, height);
 
-      // Material com Shader
       const uniforms = {
         time: { type: "f", value: 0 },
         resolution: { type: "v2", value: new THREE.Vector2(width, height) }
@@ -475,11 +458,11 @@
           varying vec2 vUv;
           
           void main() {
-            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
-            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
-            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
-            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
-            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+            // Cores roxo/coral elegantes
+            vec3 color1 = vec3(0.61, 0.15, 0.69); // Roxo #9c27b0
+            vec3 color2 = vec3(1.0, 0.44, 0.26); // Coral #ff7043
+            vec3 color3 = vec3(0.51, 0.13, 0.59); // Roxo escuro #8e24aa
+            vec3 color4 = vec3(1.0, 0.34, 0.13); // Laranja coral #ff5722
 
             float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
             float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
@@ -495,18 +478,15 @@
         transparent: true
       });
 
-      // Mesh
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
 
-      // Animação
       function animate() {
         requestAnimationFrame(animate);
         uniforms.time.value += 0.01;
         renderer.render(scene, camera);
       }
 
-      // Redimensionamento
       window.addEventListener('resize', () => {
         const width = container.clientWidth;
         const height = container.clientHeight;
@@ -528,18 +508,16 @@
     }
 
     // ================= DADOS E FUNÇÕES PARA CORES =================
-    // Simplificado, pode ser expandido para diferentes imagens por combinação
     const imageDatabaseColors = {
-      // Example structure, currently not fully utilized for all combinations
       "blonde": {
         "mechas": {
-          "quente": "https://images.unsplash.com/photo-1574695326531-155e966f914d?w=500&auto=format&fit=crop&q=60", // warm blonde highlights
-          "frio": "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60" // cool blonde highlights
+          "quente": "https://images.unsplash.com/photo-1574695326531-155e966f914d?w=500&auto=format&fit=crop&q=60",
+          "frio": "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60"
         }
       },
       "brown": {
         "ombré": {
-          "neutro": "https://images.unsplash.com/photo-1596468114090-e7943015b634?w=500&auto=format&fit=crop&q=60" // ombre on brown
+          "neutro": "https://images.unsplash.com/photo-1596468114090-e7943015b634?w=500&auto=format&fit=crop&q=60"
         }
       },
       "gray": {
@@ -607,7 +585,7 @@
       {
         id: 7,
         name: "Grisalhas Naturais",
-        baseImage: "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60", // Placeholder for a cool/gray tone
+        baseImage: "https://images.unsplash.com/photo-1621255869407-ed851755a5b5?w=500&auto=format&fit=crop&q=60",
         colorTypes: ["Grisalho"],
         techniques: ["Natural", "Matização", "Grombre"],
         undertones: ["Frio", "Neutro"],
@@ -616,16 +594,15 @@
     ];
 
     function updateImageColor(cardId) {
-      const card = document.querySelector(`.color-card[data-id="${cardId}"]`); // Changed class
+      const card = document.querySelector(`.color-card[data-id="${cardId}"]`);
       const color = hairColors.find(c => c.id === cardId);
 
-      const technique = card.querySelector('.technique').value.toLowerCase(); // Changed from size
-      const undertone = card.querySelector('.undertone').value.toLowerCase(); // Changed from style
-      const colorType = card.querySelector('.color-type').value.toLowerCase(); // Changed from hair-type
+      const technique = card.querySelector('.technique').value.toLowerCase();
+      const undertone = card.querySelector('.undertone').value.toLowerCase();
+      const colorType = card.querySelector('.color-type').value.toLowerCase();
 
       let newImage = color.baseImage;
 
-      // This part would be expanded if imageDatabaseColors had more detailed entries
       if (imageDatabaseColors[color.type] &&
         imageDatabaseColors[color.type][technique] &&
         imageDatabaseColors[color.type][technique][undertone]) {
@@ -641,13 +618,14 @@
       }, 200);
     }
 
-    function renderHairColors() { // Changed function name
+    function renderHairColors() {
       const carousel = document.getElementById('carousel');
       carousel.innerHTML = '';
 
       hairColors.forEach(color => {
         const card = `
-          <div class="color-card" data-id="${color.id}"> <img src="${color.baseImage}" alt="${color.name}">
+          <div class="color-card" data-id="${color.id}">
+            <img src="${color.baseImage}" alt="${color.name}">
             <h3>${color.name}</h3>
             <div class="options">
               <select class="color-type" onchange="updateImageColor(${color.id})">
@@ -659,27 +637,29 @@
               <select class="undertone" onchange="updateImageColor(${color.id})">
                 ${color.undertones.map(tone => `<option value="${tone.toLowerCase()}">${tone}</option>`).join('')}
               </select>
-              <button onclick="showProductsColor(${color.id})"><i class="fas fa-shopping-basket"></i> PRODUTOS</button> </div>
+              <button onclick="showProductsColor(${color.id})"><i class="fas fa-shopping-basket"></i> PRODUTOS</button>
+            </div>
           </div>
         `;
         carousel.innerHTML += card;
       });
     }
 
-    function searchColors() { // Changed function name
+    function searchColors() {
       const term = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = hairColors.filter(color => // Changed array name
+      const filtered = hairColors.filter(color =>
         color.name.toLowerCase().includes(term) ||
         color.colorTypes.some(type => type.toLowerCase().includes(term)) ||
         color.techniques.some(tech => tech.toLowerCase().includes(term)) ||
         color.undertones.some(tone => tone.toLowerCase().includes(term))
       );
 
-      if (term === '') renderHairColors(); // Changed function name
+      if (term === '') renderHairColors();
       else {
         document.getElementById('carousel').innerHTML = filtered.length > 0
           ? filtered.map(color => `
-              <div class="color-card"> <img src="${color.baseImage}" alt="${color.name}">
+              <div class="color-card">
+                <img src="${color.baseImage}" alt="${color.name}">
                 <h3>${color.name}</h3>
                 <div class="options">
                   <span>Cor: ${color.colorTypes.join(", ")}</span><br>
@@ -691,14 +671,13 @@
       }
     }
 
-    function showProductsColor(colorId) { // Changed function name
-      const color = hairColors.find(c => c.id === colorId); // Changed array name
-      const card = document.querySelector(`.color-card[data-id="${colorId}"]`); // Changed class
-      const colorType = card.querySelector('.color-type').value; // Changed
-      const technique = card.querySelector('.technique').value; // Changed
-      const undertone = card.querySelector('.undertone').value; // Changed
+    function showProductsColor(colorId) {
+      const color = hairColors.find(c => c.id === colorId);
+      const card = document.querySelector(`.color-card[data-id="${colorId}"]`);
+      const colorType = card.querySelector('.color-type').value;
+      const technique = card.querySelector('.technique').value;
+      const undertone = card.querySelector('.undertone').value;
 
-      // Produtos específicos para cada tipo de coloração
       let shampooUrl = `https://lista.mercadolivre.com.br/shampoo-cabelo-colorido`;
       let maskUrl = `https://lista.mercadolivre.com.br/mascara-hidratacao-cabelo-colorido`;
       let leaveinUrl = `https://lista.mercadolivre.com.br/leave-in-protecao-cor`;
@@ -730,9 +709,9 @@
             <style>
               body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
               .product { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-              .product h3 { color: #e89d42; margin-bottom: 10px; }
+              .product h3 { color: #9c27b0; margin-bottom: 10px; }
               .product p { color: #666; margin-bottom: 15px; }
-              .btn { background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
+              .btn { background: linear-gradient(90deg, #9c27b0 0%, #ff7043 100%); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
               .btn:hover { opacity: 0.9; }
             </style>
           </head>
@@ -775,7 +754,7 @@
     // Inicialização
     window.addEventListener('load', () => {
       initGradientBackground();
-      renderHairColors(); // Changed function name
+      renderHairColors();
     });
   </script>
 </body>

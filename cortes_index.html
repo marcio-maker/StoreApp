@@ -4,253 +4,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair by Márcio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="description" content="Hair by Márcio - Cortes modernos e personalizados para realçar sua beleza única. Descubra estilos exclusivos com nossa especialista em visagismo.">
+  <meta name="keywords" content="cortes femininos, hair by márcio, cortes modernos, visagismo, estilo feminino">
+  <title>Hair by Márcio - Cortes Modernos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
     }
 
     body {
-      background: #f5f5f5;
-      color: #333;
-      padding-top: 180px;
-      /* Aumentado para acomodar o menu */
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+      color: #374151;
+      padding-top: 200px;
     }
 
-    /* Container para o Three.js */
+    /* Three.js Header Container */
     #header-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 180px;
-      /* Aumentado para acomodar o menu */
+      height: 200px;
       z-index: 90;
     }
 
-    /* Header com conteúdo */
+    /* Header Content */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       color: white;
-      padding: 15px 20px;
+      padding: 20px;
       text-align: center;
       z-index: 100;
       background: transparent;
     }
 
-    .logo {
-      margin-bottom: 10px;
-    }
-
-    header h1 {
-      font-size: 24px;
-      margin-bottom: 5px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    header p {
-      font-size: 14px;
-      opacity: 0.9;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    .logo-container {
       margin-bottom: 15px;
     }
 
-    /* Menu de navegação */
+    .logo-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(45deg, #fff, #fde2e7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    /* Navigation Menu */
     .nav-menu {
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      white-space: nowrap;
-      gap: 12px;
-      margin-bottom: 15px;
-      padding: 10px 10px;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 0 15px;
       scrollbar-width: none;
-      /* Firefox */
+      justify-content: center;
     }
 
     .nav-menu::-webkit-scrollbar {
       display: none;
-      /* Chrome, Safari */
     }
 
-    .nav-menu a {
+    .nav-item {
       flex: 0 0 auto;
-      min-width: 100px;
-      color: #fff;
+      min-width: 120px;
+      color: white;
       text-decoration: none;
-      font-size: 15px;
-      padding: 10px 22px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.10);
-      box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition:
-        background 0.25s,
-        color 0.25s,
-        box-shadow 0.25s,
-        transform 0.18s;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 7px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
+      gap: 8px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
 
-    .nav-menu a i {
-      font-size: 17px;
+    .nav-item i {
+      font-size: 16px;
     }
 
-    .nav-menu a:hover,
-    .nav-menu a:focus {
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
-      color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(147, 87, 187, 0.18), 0 2px 8px 0 rgba(232, 157, 66, 0.10);
-      transform: translateY(-2px) scale(1.04);
-      outline: none;
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
-
-    /* Barra de busca */
-    .search-bar {
+    /* Search Bar */
+    .search-container {
       display: flex;
       justify-content: center;
-      padding: 0 10px;
+      padding: 0 20px;
     }
 
-    .search-bar input {
-      width: 70%;
+    .search-wrapper {
+      position: relative;
+      width: 100%;
       max-width: 400px;
-      padding: 10px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
       border: none;
-      border-radius: 20px 0 0 20px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      font-size: 14px;
       outline: none;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
     }
 
-    .search-bar button {
-      padding: 10px 15px;
-      border: none;
-      background: #ff9a44;
-      color: white;
-      border-radius: 0 20px 20px 0;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
+    .search-input:focus {
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+      transform: scale(1.02);
     }
 
-    .search-bar button:hover {
-      background: #ef731a;
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 16px;
     }
 
-    /* Conteúdo principal */
-    .carousel {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      padding: 20px;
-      max-width: 100%;
-      overflow-y: auto;
-    }
-
-    .haircut-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-      max-width: 500px;
+    /* Main Content */
+    .main-container {
+      max-width: 1200px;
       margin: 0 auto;
-      width: 100%;
+      padding: 40px 20px;
     }
 
-    .haircut-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .haircut-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      transition: opacity 0.5s ease;
-    }
-
-    .haircut-card h3 {
-      padding: 15px;
-      font-size: 18px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .options {
-      padding: 15px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .options select,
-    .options button {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      background: white;
-      font-size: 14px;
-      flex: 1 1 120px;
-      min-width: 0;
-    }
-
-    .options button {
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-      flex-grow: 1;
-    }
-
-    .options button:hover {
-      background: linear-gradient(90deg, #9357bb 0%, #e89d42 100%);
-    }
-
-    footer {
+    .page-title {
       text-align: center;
-      padding: 25px 20px;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
     }
 
-    .footer-content {
-      max-width: 600px;
-      margin: 0 auto;
+    .page-title h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ec4899, #f59e0b, #ef4444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    /* Cuts Grid */
+    .cuts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .cut-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .cut-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: #f59e0b;
+    }
+
+    .cut-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .cut-card:hover .cut-image {
+      transform: scale(1.05);
+    }
+
+    .cut-content {
+      padding: 25px;
+    }
+
+    .cut-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ec4899;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .cut-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .cut-select {
+      padding: 10px 12px;
+      border: 2px solid #f3f4f6;
+      border-radius: 12px;
+      background: white;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .cut-select:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+    }
+
+    .cut-button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(45deg, #ec4899, #f59e0b);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .cut-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 60px;
     }
 
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin: 15px 0;
+      margin-bottom: 20px;
     }
 
-    .social-icons a {
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
       color: white;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
     .instagram {
@@ -262,22 +322,58 @@
     }
 
     .facebook {
-      background: linear-gradient(45deg, #1877F2, #0A5F9E);
-    }
-
-    .social-icons a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(45deg, #1877F2, #0866FF);
     }
 
     .copyright {
-      font-size: 12px;
-      color: #777;
+      color: #6b7280;
+      font-size: 14px;
       margin-top: 15px;
     }
 
-    /* Responsividade para mobile */
+    /* Responsive Design */
     @media (max-width: 768px) {
+      body {
+        padding-top: 180px;
+      }
+
+      #header-bg {
+        height: 180px;
+      }
+
+      .logo-title {
+        font-size: 2rem;
+      }
+
+      .logo-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .nav-menu {
+        gap: 10px;
+      }
+
+      .nav-item {
+        min-width: 100px;
+        font-size: 12px;
+        padding: 10px 15px;
+      }
+
+      .page-title h1 {
+        font-size: 2.5rem;
+      }
+
+      .cuts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .cut-content {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
       body {
         padding-top: 160px;
       }
@@ -286,170 +382,129 @@
         height: 160px;
       }
 
-      header h1 {
-        font-size: 20px;
+      .nav-item i {
+        display: none;
       }
 
-      header p {
-        font-size: 12px;
-        margin-bottom: 10px;
-      }
-
-      .nav-menu {
-        gap: 5px;
-        margin-bottom: 10px;
-      }
-
-      .nav-menu a {
-        font-size: 12px;
-        padding: 5px 8px;
-      }
-
-      .nav-menu a i {
-        font-size: 14px;
-      }
-
-      .search-bar input {
-        padding: 8px 10px;
-        font-size: 12px;
-      }
-
-      .search-bar button {
+      .nav-item {
+        font-size: 11px;
         padding: 8px 12px;
       }
 
-      .carousel {
-        padding: 15px;
-        gap: 20px;
-      }
-
-      .haircut-card h3 {
-        padding: 12px;
-        font-size: 16px;
-      }
-
-      .options {
-        padding: 12px;
-        gap: 8px;
-      }
-
-      .options select,
-      .options button {
-        padding: 6px 10px;
-        font-size: 12px;
+      .page-title h1 {
+        font-size: 2rem;
       }
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding-top: 140px;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-      #header-bg {
-        height: 140px;
-      }
-
-      .logo {
-        margin-bottom: 5px;
-      }
-
-      .nav-menu {
-        gap: 3px;
-      }
-
-      .nav-menu a {
-        font-size: 11px;
-        padding: 4px 6px;
-      }
-
-      .nav-menu a i {
-        display: none;
-        /* Esconde ícones em telas muito pequenas */
-      }
-
-      .search-bar {
-        padding: 0 5px;
-      }
-
-      .search-bar input {
-        width: 65%;
-        padding: 6px 8px;
-      }
-
-      .search-bar button {
-        padding: 6px 10px;
-      }
+    .cut-card {
+      animation: fadeInUp 0.6s ease forwards;
     }
   </style>
 </head>
 
 <body>
-  <!-- Gradiente animado com Three.js -->
+  <!-- Three.js Header Background -->
   <div id="header-bg"></div>
 
-  <!-- Header com conteúdo -->
+  <!-- Header Content -->
   <header>
-    <div class="logo">
-      <h1>HAIR BY MÁRCIO</h1>
-      <p>Te ajudando a criar estilos únicos</p>
+    <div class="logo-container">
+      <h1 class="logo-title">Hair by Márcio</h1>
+      <p class="logo-subtitle">Cortes que revelam sua essência</p>
     </div>
 
-    <!-- Menu com 6 links e ícones -->
+    <!-- Navigation Menu -->
     <nav class="nav-menu">
-      <a href="index.html"><i class="fas fa-home"></i> Início</a>
-      <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
-      <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
-      <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-      <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
-      <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
-      <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-home"></i> Início
+      </a>
+      <a href="cortes_index.html" class="nav-item">
+        <i class="fas fa-cut"></i> Cortes
+      </a>
+      <a href="cores_index.html" class="nav-item">
+        <i class="fas fa-palette"></i> Cores
+      </a>
+      <a href="produtos_index.html" class="nav-item">
+        <i class="fas fa-shopping-bag"></i> Produtos
+      </a>
+      <a href="visagismo.html" class="nav-item">
+        <i class="fas fa-user-circle"></i> Visagismo
+      </a>
+      <a href="colorimetria.html" class="nav-item">
+        <i class="fas fa-eye-dropper"></i> Colorimetria
+      </a>
+      <a href="blog_index.html" class="nav-item">
+        <i class="fas fa-blog"></i> Blog
+      </a>
     </nav>
 
-    <!-- Barra de busca -->
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar cortes..." id="searchInput">
-      <button onclick="searchCuts()"><i class="fas fa-search"></i></button>
+    <!-- Search Bar -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Buscar cortes..." id="searchInput">
+      </div>
     </div>
   </header>
 
-  <!-- Conteúdo principal -->
-  <div class="carousel" id="carousel">
-    <!-- Cortes serão inseridos via JavaScript -->
-  </div>
+  <!-- Main Content -->
+  <main class="main-container">
+    <div class="page-title">
+      <h1>Cortes Modernos</h1>
+      <p>Descubra o corte perfeito que realça sua beleza única</p>
+    </div>
 
-  <!-- Rodapé -->
+    <!-- Cuts Grid -->
+    <div class="cuts-grid" id="cutsGrid">
+      <!-- Cuts will be inserted here by JavaScript -->
+    </div>
+  </main>
+
+  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="social-icons">
-        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      </div>
-      <div class="copyright">
-        © 2025 Hair by Márcio - Todos os direitos reservados
-      </div>
+    <div class="social-icons">
+      <a href="#" class="social-icon instagram" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="social-icon whatsapp" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="#" class="social-icon facebook" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+    <div class="copyright">
+      © 2025 Hair by Márcio - Todos os direitos reservados
     </div>
   </footer>
 
   <!-- Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  
   <script>
-    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    // ================= THREE.JS ANIMATED HEADER =================
     function initGradientBackground() {
       const container = document.getElementById('header-bg');
       const width = container.clientWidth;
       const height = container.clientHeight;
 
-      // Cena
       const scene = new THREE.Scene();
-
-      // Câmera Ortográfica
       const camera = new THREE.OrthographicCamera(
         width / -2, width / 2, height / 2, height / -2, 1, 1000
       );
       camera.position.z = 2;
 
-      // Renderer
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
@@ -457,10 +512,7 @@
       renderer.setSize(width, height);
       container.appendChild(renderer.domElement);
 
-      // Geometria
       const geometry = new THREE.PlaneGeometry(width, height);
-
-      // Material com Shader
       const uniforms = {
         time: { type: "f", value: 0 },
         resolution: { type: "v2", value: new THREE.Vector2(width, height) }
@@ -480,51 +532,45 @@
           varying vec2 vUv;
           
           void main() {
-            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
-            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
-            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
-            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
-            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+            // Rosa/Dourado gradient colors
+            vec3 color1 = vec3(0.93, 0.28, 0.6);  // Rosa #ec4899
+            vec3 color2 = vec3(0.96, 0.62, 0.07); // Dourado #f59e0b
+            vec3 color3 = vec3(0.99, 0.42, 0.42); // Coral #ff6b6b
+            vec3 color4 = vec3(0.98, 0.85, 0.93); // Rosa claro #fdf2f8
 
-            float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
-            float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
-            float wave3 = sin(time * 0.7 + vUv.x * 5.0 + vUv.y * 5.0) * 0.5 + 0.5;
+            float wave1 = sin(time * 0.4 + vUv.x * 4.0) * 0.5 + 0.5;
+            float wave2 = cos(time * 0.3 + vUv.y * 3.0) * 0.5 + 0.5;
+            float wave3 = sin(time * 0.6 + (vUv.x + vUv.y) * 2.0) * 0.5 + 0.5;
 
             vec3 color = mix(color1, color2, wave1);
-            color = mix(color, color3, wave2 * 0.5);
+            color = mix(color, color3, wave2 * 0.6);
             color = mix(color, color4, wave3 * 0.3);
 
-            gl_FragColor = vec4(color, 0.92);
+            gl_FragColor = vec4(color, 0.9);
           }
         `,
         transparent: true
       });
 
-      // Mesh
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
 
-      // Animação
       function animate() {
         requestAnimationFrame(animate);
-        uniforms.time.value += 0.01;
+        uniforms.time.value += 0.008;
         renderer.render(scene, camera);
       }
 
-      // Redimensionamento
       window.addEventListener('resize', () => {
         const width = container.clientWidth;
         const height = container.clientHeight;
-
         camera.left = width / -2;
         camera.right = width / 2;
         camera.top = height / 2;
         camera.bottom = height / -2;
         camera.updateProjectionMatrix();
-
         renderer.setSize(width, height);
         uniforms.resolution.value.set(width, height);
-
         mesh.geometry.dispose();
         mesh.geometry = new THREE.PlaneGeometry(width, height);
       });
@@ -532,209 +578,283 @@
       animate();
     }
 
-    // ================= SEU CÓDIGO ORIGINAL =================
-    const imageDatabase = {
-      "undercut": {
-        "curto": {
-          "clássico": {
-            "liso": "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-            "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-            "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-          },
-          "desfiado": {
-            "liso": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-            "ondulado": "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-            "cacheado": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60"
-          }
-        }
-      }
-    };
-
-    const haircuts = [
+    // ================= CUTS DATA =================
+    const cutsData = [
       {
         id: 1,
-        name: "Corte Pixie",
-        baseImage: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
-        sizes: ["Curto", "Médio"],
-        styles: ["Clássico", "Desfiado"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "pixie"
+        name: "Pixie Moderno",
+        image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&auto=format&fit=crop&q=60",
+        styles: ["Clássico", "Desfiado", "Assimétrico"],
+        lengths: ["Muito Curto", "Curto"],
+        textures: ["Liso", "Ondulado", "Texturizado"]
       },
       {
         id: 2,
-        name: "Bob Assimétrico",
-        baseImage: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
-        sizes: ["Curto", "Médio", "Longo"],
-        styles: ["Tradicional", "Moderno", "Desfiado"],
-        hairTypes: ["Liso", "Ondulado", "Cacheado"],
-        type: "bob"
+        name: "Bob Elegante",
+        image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format&fit=crop&q=60",
+        styles: ["Reto", "Assimétrico", "Ondulado"],
+        lengths: ["Curto", "Médio"],
+        textures: ["Liso", "Ondulado", "Cacheado"]
       },
       {
         id: 3,
-        name: "Long Bob (Lob)",
-        baseImage: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
-        sizes: ["Médio", "Longo"],
-        styles: ["Clássico", "Moderno"],
-        hairTypes: ["Liso", "Ondulado"],
-        type: "lob"
+        name: "Long Bob Chic",
+        image: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&auto=format&fit=crop&q=60",
+        styles: ["Reto", "Ondulado", "Com Franja"],
+        lengths: ["Médio", "Longo"],
+        textures: ["Liso", "Ondulado"]
       },
       {
         id: 4,
-        name: "Shag Moderno",
-        baseImage: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60",
-        sizes: ["Médio", "Longo"],
-        styles: ["Desfiado", "Camadas"],
-        hairTypes: ["Ondulado", "Cacheado"],
-        type: "shag"
+        name: "Camadas Volumosas",
+        image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&auto=format&fit=crop&q=60",
+        styles: ["Em Camadas", "Degradê", "Repicado"],
+        lengths: ["Médio", "Longo"],
+        textures: ["Ondulado", "Cacheado", "Volumoso"]
+      },
+      {
+        id: 5,
+        name: "Franja Estilosa",
+        image: "https://images.unsplash.com/photo-1597248375080-b74a3625f4d8?w=500&auto=format&fit=crop&q=60",
+        styles: ["Reta", "Lateral", "Cortininha"],
+        lengths: ["Todos os Comprimentos"],
+        textures: ["Liso", "Ondulado"]
+      },
+      {
+        id: 6,
+        name: "Corte Assimétrico",
+        image: "https://images.unsplash.com/photo-1574695326531-155e966f914d?w=500&auto=format&fit=crop&q=60",
+        styles: ["Moderno", "Ousado", "Criativo"],
+        lengths: ["Curto", "Médio"],
+        textures: ["Liso", "Texturizado"]
       }
     ];
 
-    function updateImage(cardId) {
-      const card = document.querySelector(`.haircut-card[data-id="${cardId}"]`);
-      const haircut = haircuts.find(h => h.id === cardId);
+    // ================= RENDER CUTS =================
+    function renderCuts(cuts = cutsData) {
+      const grid = document.getElementById('cutsGrid');
+      grid.innerHTML = '';
 
-      const size = card.querySelector('.size').value.toLowerCase();
-      const style = card.querySelector('.style').value.toLowerCase();
-      const hairType = card.querySelector('.hair-type').value.toLowerCase();
+      cuts.forEach((cut, index) => {
+        const cutCard = document.createElement('div');
+        cutCard.className = 'cut-card';
+        cutCard.style.animationDelay = `${index * 0.1}s`;
 
-      let newImage = haircut.baseImage;
-
-      if (imageDatabase[haircut.type] &&
-        imageDatabase[haircut.type][size] &&
-        imageDatabase[haircut.type][size][style] &&
-        imageDatabase[haircut.type][size][style][hairType]) {
-        newImage = imageDatabase[haircut.type][size][style][hairType];
-      }
-
-      const imgElement = card.querySelector('img');
-      imgElement.style.opacity = 0;
-
-      setTimeout(() => {
-        imgElement.src = newImage;
-        imgElement.style.opacity = 1;
-      }, 200);
-    }
-
-    function renderHaircuts() {
-      const carousel = document.getElementById('carousel');
-      carousel.innerHTML = '';
-
-      haircuts.forEach(cut => {
-        const card = `
-          <div class="haircut-card" data-id="${cut.id}">
-            <img src="${cut.baseImage}" alt="${cut.name}">
-            <h3>${cut.name}</h3>
-            <div class="options">
-              <select class="size" onchange="updateImage(${cut.id})">
-                ${cut.sizes.map(size => `<option value="${size.toLowerCase()}">${size}</option>`).join('')}
+        cutCard.innerHTML = `
+          <img src="${cut.image}" alt="${cut.name}" class="cut-image">
+          <div class="cut-content">
+            <h3 class="cut-title">${cut.name}</h3>
+            <div class="cut-options">
+              <select class="cut-select" data-cut="${cut.id}" data-type="style">
+                <option value="">Estilo</option>
+                ${cut.styles.map(style => `<option value="${style}">${style}</option>`).join('')}
               </select>
-              <select class="style" onchange="updateImage(${cut.id})">
-                ${cut.styles.map(style => `<option value="${style.toLowerCase()}">${style}</option>`).join('')}
+              <select class="cut-select" data-cut="${cut.id}" data-type="length">
+                <option value="">Comprimento</option>
+                ${cut.lengths.map(length => `<option value="${length}">${length}</option>`).join('')}
               </select>
-              <select class="hair-type" onchange="updateImage(${cut.id})">
-                ${cut.hairTypes.map(type => `<option value="${type.toLowerCase()}">${type}</option>`).join('')}
+              <select class="cut-select" data-cut="${cut.id}" data-type="texture">
+                <option value="">Textura</option>
+                ${cut.textures.map(texture => `<option value="${texture}">${texture}</option>`).join('')}
               </select>
-              <button onclick="showProducts(${cut.id})"><i class="fas fa-shopping-basket"></i> PRODUTOS</button>
             </div>
+            <button class="cut-button" onclick="showCutDetails(${cut.id})">
+              <i class="fas fa-sparkles"></i>
+              Ver Detalhes
+            </button>
           </div>
         `;
-        carousel.innerHTML += card;
+
+        grid.appendChild(cutCard);
       });
     }
 
+    // ================= SEARCH FUNCTIONALITY =================
     function searchCuts() {
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = haircuts.filter(cut =>
+      const term = document.getElementById('searchInput').value.toLowerCase().trim();
+      
+      if (!term) {
+        renderCuts();
+        return;
+      }
+
+      const filtered = cutsData.filter(cut => 
         cut.name.toLowerCase().includes(term) ||
-        cut.sizes.some(size => size.toLowerCase().includes(term)) ||
         cut.styles.some(style => style.toLowerCase().includes(term)) ||
-        cut.hairTypes.some(type => type.toLowerCase().includes(term))
+        cut.lengths.some(length => length.toLowerCase().includes(term)) ||
+        cut.textures.some(texture => texture.toLowerCase().includes(term))
       );
 
-      if (term === '') renderHaircuts();
-      else {
-        document.getElementById('carousel').innerHTML = filtered.length > 0
-          ? filtered.map(cut => `
-              <div class="haircut-card">
-                <img src="${cut.baseImage}" alt="${cut.name}">
-                <h3>${cut.name}</h3>
-                <div class="options">
-                  <span>Forma: ${cut.hairTypes.join(", ")}</span>
-                </div>
-              </div>
-            `).join('')
-          : '<p style="text-align:center;width:100%;padding:20px;">Nenhum corte encontrado</p>';
-      }
+      renderCuts(filtered);
     }
 
-    function showProducts(cutId) {
-      const cut = haircuts.find(c => c.id === cutId);
-      const card = document.querySelector(`.haircut-card[data-id="${cutId}"]`);
-      const size = card.querySelector('.size').value;
-      const style = card.querySelector('.style').value;
-      const hairType = card.querySelector('.hair-type').value;
+    // ================= CUT DETAILS =================
+    function showCutDetails(cutId) {
+      const cut = cutsData.find(c => c.id === cutId);
+      if (!cut) return;
 
-      // Produtos específicos para cada tipo de corte
-      const products = {
-        shampoo: `https://lista.mercadolivre.com.br/shampoo-cabelo-${hairType}`,
-        modelador: style.includes('desfiado') ?
-          'https://lista.mercadolivre.com.br/gel-texturizador-cabelo' :
-          'https://lista.mercadolivre.com.br/cera-modeladora-cabelo',
-        finalizador: size === 'curto' ?
-          'https://lista.mercadolivre.com.br/spray-volume-cabelo' :
-          'https://lista.mercadolivre.com.br/finalizador-definicao-cabelo'
-      };
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      `;
 
+      modal.innerHTML = `
+        <div style="
+          background: white;
+          border-radius: 20px;
+          padding: 30px;
+          max-width: 500px;
+          width: 100%;
+          text-align: center;
+          position: relative;
+        ">
+          <button onclick="this.closest('.modal').remove()" style="
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+          ">&times;</button>
+          
+          <img src="${cut.image}" alt="${cut.name}" style="
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+          ">
+          
+          <h2 style="
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ec4899;
+            margin-bottom: 15px;
+          ">${cut.name}</h2>
+          
+          <div style="margin-bottom: 20px; text-align: left;">
+            <p style="margin-bottom: 10px;"><strong>Estilos:</strong> ${cut.styles.join(', ')}</p>
+            <p style="margin-bottom: 10px;"><strong>Comprimentos:</strong> ${cut.lengths.join(', ')}</p>
+            <p><strong>Texturas:</strong> ${cut.textures.join(', ')}</p>
+          </div>
+          
+          <button onclick="bookAppointment('${cut.name}')" style="
+            background: linear-gradient(45deg, #ec4899, #f59e0b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+          ">
+            <i class='fas fa-calendar-alt'></i> Agendar
+          </button>
+          
+          <button onclick="showProducts('${cut.name}')" style="
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+          ">
+            <i class='fas fa-shopping-bag'></i> Produtos
+          </button>
+        </div>
+      `;
+
+      modal.className = 'modal';
+      document.body.appendChild(modal);
+    }
+
+    // ================= BOOKING & PRODUCTS =================
+    function bookAppointment(cutName) {
+      const message = `Olá! Gostaria de agendar um horário para o corte: ${cutName}`;
+      const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function showProducts(cutName) {
       const productWindow = window.open('', '_blank', 'width=600,height=500');
       productWindow.document.write(`
         <html>
           <head>
-            <title>Produtos para ${cut.name}</title>
+            <title>Produtos para ${cutName}</title>
             <style>
-              body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
-              .product { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-              .product h3 { color: #e89d42; margin-bottom: 10px; }
-              .product p { color: #666; margin-bottom: 15px; }
-              .btn { background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
-              .btn:hover { opacity: 0.9; }
+              body { font-family: 'Poppins', sans-serif; padding: 20px; background: linear-gradient(135deg, #fdf2f8, #fce7f3); }
+              .product { background: white; margin: 15px 0; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+              .product h3 { color: #ec4899; margin-bottom: 10px; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
+              .product p { color: #6b7280; margin-bottom: 15px; line-height: 1.6; }
+              .btn { background: linear-gradient(45deg, #ec4899, #f59e0b); color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: 600; }
+              .btn:hover { opacity: 0.9; transform: translateY(-2px); }
             </style>
           </head>
           <body>
-            <h2>Produtos Recomendados para ${cut.name}</h2>
-            <p><strong>Configuração:</strong> ${size}, ${style}, ${hairType}</p>
+            <h2 style="text-align: center; color: #ec4899; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Produtos para ${cutName}</h2>
             
             <div class="product">
-              <h3>1. Shampoo para Cabelos ${hairType.charAt(0).toUpperCase() + hairType.slice(1)}s</h3>
-              <p>Limpeza específica para seu tipo de cabelo</p>
-              <a href="${products.shampoo}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+              <h3>Shampoo Nutritivo</h3>
+              <p>Limpeza suave que mantém a forma e brilho do seu corte</p>
+              <a href="https://lista.mercadolivre.com.br/shampoo-nutritivo" target="_blank" class="btn">🛒 Ver Produto</a>
             </div>
             
             <div class="product">
-              <h3>2. ${style.includes('desfiado') ? 'Gel Texturizador' : 'Cera Modeladora'}</h3>
-              <p>Produto ideal para finalizar seu corte ${style}</p>
-              <a href="${products.modelador}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+              <h3>Condicionador Hidratante</h3>
+              <p>Hidratação profunda sem pesar, ideal para manter o movimento</p>
+              <a href="https://lista.mercadolivre.com.br/condicionador-hidratante" target="_blank" class="btn">🛒 Ver Produto</a>
             </div>
             
             <div class="product">
-              <h3>3. Finalizador ${size === 'curto' ? 'para Volume' : 'para Definição'}</h3>
-              <p>Finalização perfeita para cabelos ${size}s</p>
-              <a href="${products.finalizador}" target="_blank" class="btn">🛒 Ver no Mercado Livre</a>
+              <h3>Finalizador Modelador</h3>
+              <p>Define e fixa o corte mantendo movimento natural</p>
+              <a href="https://lista.mercadolivre.com.br/finalizador-modelador" target="_blank" class="btn">🛒 Ver Produto</a>
             </div>
             
-            <div style="text-align: center; margin-top: 20px;">
-              <button onclick="window.close()" style="background: #ccc; color: #333; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Fechar</button>
+            <div style="text-align: center; margin-top: 30px;">
+              <button onclick="window.close()" style="background: #6b7280; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;">Fechar</button>
             </div>
           </body>
         </html>
       `);
     }
 
-    // Inicialização
+    // ================= EVENT LISTENERS =================
+    document.getElementById('searchInput').addEventListener('input', searchCuts);
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchCuts();
+      }
+    });
+
+    // ================= INITIALIZATION =================
     window.addEventListener('load', () => {
       initGradientBackground();
-      renderHaircuts();
+      renderCuts();
+    });
+
+    // Update image on select change
+    document.addEventListener('change', function(e) {
+      if (e.target.classList.contains('cut-select')) {
+        const cutId = parseInt(e.target.dataset.cut);
+        const cut = cutsData.find(c => c.id === cutId);
+        // Here you could implement image switching based on selections
+        // For now, we'll keep the same image
+      }
     });
   </script>
 </body>
-
 </html>

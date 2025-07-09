@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://example.com/hair-by-marcio-colorimetria.jpg">
   <meta property="og:url" content="https://hairbymarcio.com/colorimetria">
   <title>Colorimetria - Descubra suas Cores Ideais | Hair by Márcio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap"
     rel="stylesheet">
@@ -82,12 +82,10 @@
       margin-bottom: 15px;
       padding: 10px 10px;
       scrollbar-width: none;
-      /* Firefox */
     }
 
     .nav-menu::-webkit-scrollbar {
       display: none;
-      /* Chrome, Safari */
     }
 
     .nav-menu a {
@@ -100,11 +98,7 @@
       border-radius: 22px;
       background: rgba(255, 255, 255, 0.10);
       box-shadow: 0 2px 12px 0 rgba(80, 60, 120, 0.10), 0 1.5px 6px 0 rgba(80, 60, 120, 0.08);
-      transition:
-        background 0.25s,
-        color 0.25s,
-        box-shadow 0.25s,
-        transform 0.18s;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
       display: flex;
       align-items: center;
@@ -119,13 +113,12 @@
 
     .nav-menu a:hover,
     .nav-menu a:focus {
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
       color: #fff;
-      box-shadow: 0 4px 18px 0 rgba(147, 87, 187, 0.18), 0 2px 8px 0 rgba(232, 157, 66, 0.10);
+      box-shadow: 0 4px 18px 0 rgba(155, 89, 182, 0.18), 0 2px 8px 0 rgba(243, 156, 18, 0.10);
       transform: translateY(-2px) scale(1.04);
       outline: none;
     }
-
 
     /* Barra de busca */
     .search-bar {
@@ -149,7 +142,7 @@
     .search-bar button {
       padding: 10px 15px;
       border: none;
-      background: #ff9a44;
+      background: #9b59b6;
       color: white;
       border-radius: 0 20px 20px 0;
       cursor: pointer;
@@ -158,7 +151,7 @@
     }
 
     .search-bar button:hover {
-      background: #ef731a;
+      background: #8e44ad;
     }
 
     /* Conteúdo principal */
@@ -223,7 +216,7 @@
 
     .quiz-progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
       width: 0%;
       transition: width 0.5s ease;
     }
@@ -271,7 +264,7 @@
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
       transform: scaleX(0);
       transition: transform 0.3s;
     }
@@ -327,7 +320,7 @@
       padding: 12px 25px;
       border: none;
       border-radius: 25px;
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
       color: white;
       cursor: pointer;
       transition: all 0.3s;
@@ -385,13 +378,13 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 4px solid #e89d42;
+      border: 4px solid #9b59b6;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .color-analysis-info h4 {
       font-size: 24px;
-      color: #9357bb;
+      color: #9b59b6;
       margin-bottom: 10px;
     }
 
@@ -477,7 +470,7 @@
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      border-color: #e89d42;
+      border-color: #9b59b6;
     }
 
     .product-card img {
@@ -506,7 +499,7 @@
     .product-price {
       font-size: 20px;
       font-weight: bold;
-      color: #e89d42;
+      color: #9b59b6;
       margin-bottom: 15px;
     }
 
@@ -515,7 +508,7 @@
       padding: 12px;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      background: linear-gradient(90deg, #9b59b6 0%, #f39c12 100%);
       color: white;
       cursor: pointer;
       transition: all 0.3s;
@@ -742,13 +735,13 @@
       <p>Descubra suas cores ideais com colorimetria</p>
     </div>
 
-    <!-- Menu com 6 links e ícones -->
+    <!-- Menu com 7 links e ícones femininos -->
     <nav class="nav-menu">
       <a href="index.html"><i class="fas fa-home"></i> Início</a>
-      <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
+      <a href="cortes_index.html"><i class="fas fa-cut"></i> Cortes</a>
       <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
       <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
-      <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
+      <a href="visagismo.html"><i class="fas fa-female"></i> Visagismo</a>
       <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
       <a href="blog_index.html"><i class="fas fa-blog"></i> Blog</a>
     </nav>
@@ -951,9 +944,9 @@
   </footer>
 
   <!-- Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
   <script>
-    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    // ================= THREE.JS - GRADIENTE ANIMADO VIOLETA/DOURADO =================
     function initGradientBackground() {
       const container = document.getElementById('header-bg');
       const width = container.clientWidth;
@@ -979,7 +972,7 @@
       // Geometria
       const geometry = new THREE.PlaneGeometry(width, height);
 
-      // Material com Shader
+      // Material com Shader - Degradê Violeta/Dourado
       const uniforms = {
         time: { type: "f", value: 0 },
         resolution: { type: "v2", value: new THREE.Vector2(width, height) }
@@ -999,21 +992,21 @@
           varying vec2 vUv;
           
           void main() {
-            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
-            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
-            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
-            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
-            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+            // Cores violeta/dourado: violeta escuro, violeta, dourado, dourado claro
+            vec3 color1 = vec3(0.29, 0.11, 0.44); // Violeta escuro #4A1C70
+            vec3 color2 = vec3(0.61, 0.35, 0.71); // Violeta #9B59B6
+            vec3 color3 = vec3(0.95, 0.61, 0.07); // Dourado #F39C12
+            vec3 color4 = vec3(1.0, 0.84, 0.0);   // Dourado claro #FFD700
 
-            float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
-            float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
-            float wave3 = sin(time * 0.7 + vUv.x * 5.0 + vUv.y * 5.0) * 0.5 + 0.5;
+            float wave1 = sin(time * 0.6 + vUv.x * 2.5) * 0.5 + 0.5;
+            float wave2 = cos(time * 0.4 + vUv.y * 3.0) * 0.5 + 0.5;
+            float wave3 = sin(time * 0.8 + vUv.x * 4.0 + vUv.y * 2.0) * 0.5 + 0.5;
 
             vec3 color = mix(color1, color2, wave1);
-            color = mix(color, color3, wave2 * 0.5);
-            color = mix(color, color4, wave3 * 0.3);
+            color = mix(color, color3, wave2 * 0.6);
+            color = mix(color, color4, wave3 * 0.4);
 
-            gl_FragColor = vec4(color, 0.92);
+            gl_FragColor = vec4(color, 0.95);
           }
         `,
         transparent: true
@@ -1026,7 +1019,7 @@
       // Animação
       function animate() {
         requestAnimationFrame(animate);
-        uniforms.time.value += 0.01;
+        uniforms.time.value += 0.012;
         renderer.render(scene, camera);
       }
 
@@ -1162,14 +1155,14 @@
           price: "R$ 48,90",
           image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
           description: "Neutraliza tons amarelados em cabelos loiros e grisalhos",
-          affiliate: "https://mercadolivre.com.br/shampoo-matizador-platinado"
+          affiliate: "https://lista.mercadolivre.com.br/shampoo-matizador-platinado"
         },
         {
           name: "Tinta Loiro Platinado",
           price: "R$ 65,90",
           image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
           description: "Coloração profissional para tons frios e platinados",
-          affiliate: "https://mercadolivre.com.br/tinta-loiro-platinado"
+          affiliate: "https://lista.mercadolivre.com.br/tinta-loiro-platinado"
         }
       ],
       'claro-quente': [
@@ -1177,111 +1170,40 @@
           name: "Tinta Loiro Dourado",
           price: "R$ 59,90",
           image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Coloração dourada para realçar tons quentes",
-          affiliate: "https://mercadolivre.com.br/tinta-loiro-dourado"
+          description: "Para cabelos claros com subtom quente",
+          affiliate: "https://lista.mercadolivre.com.br/tinta-loiro-dourado"
         },
         {
-          name: "Máscara Hidratante Dourada",
+          name: "Condicionador Dourado",
           price: "R$ 42,90",
           image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
-          description: "Hidratação com reflexos dourados",
-          affiliate: "https://mercadolivre.com.br/mascara-hidratante-dourada"
+          description: "Realça tons dourados naturais",
+          affiliate: "https://lista.mercadolivre.com.br/condicionador-dourado"
         }
       ],
       'medio-frio': [
         {
-          name: "Tinta Castanho Chocolate",
-          price: "R$ 52,90",
+          name: "Coloração Castanho Chocolate",
+          price: "R$ 55,90",
           image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Cor rica e profunda para tons frios",
-          affiliate: "https://mercadolivre.com.br/tinta-castanho-chocolate"
+          description: "Tom chocolate para peles médias frias",
+          affiliate: "https://lista.mercadolivre.com.br/tinta-castanho-chocolate"
         },
         {
-          name: "Condicionador Protetor de Cor",
+          name: "Máscara Nutritiva",
           price: "R$ 38,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Nutrição profunda para cabelos coloridos",
+          affiliate: "https://lista.mercadolivre.com.br/mascara-nutritiva"
+        }
+      ],
+      'default': [
+        {
+          name: "Kit Coloração Universal",
+          price: "R$ 69,90",
           image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
-          description: "Protege e mantém a cor por mais tempo",
-          affiliate: "https://mercadolivre.com.br/condicionador-protetor-cor"
-        }
-      ],
-      'medio-quente': [
-        {
-          name: "Tinta Caramelo",
-          price: "R$ 56,90",
-          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Tom caramelo quente e luminoso",
-          affiliate: "https://mercadolivre.com.br/tinta-caramelo"
-        },
-        {
-          name: "Óleo Nutritivo Dourado",
-          price: "R$ 44,90",
-          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
-          description: "Nutrição com brilho dourado",
-          affiliate: "https://mercadolivre.com.br/oleo-nutritivo-dourado"
-        }
-      ],
-      'moreno-frio': [
-        {
-          name: "Tinta Borgonha",
-          price: "R$ 61,90",
-          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Cor intensa e sofisticada",
-          affiliate: "https://mercadolivre.com.br/tinta-borgonha"
-        },
-        {
-          name: "Shampoo Realçador de Cor",
-          price: "R$ 41,90",
-          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
-          description: "Realça e intensifica cores escuras",
-          affiliate: "https://mercadolivre.com.br/shampoo-realcador-cor"
-        }
-      ],
-      'moreno-quente': [
-        {
-          name: "Tinta Cobre Intenso",
-          price: "R$ 58,90",
-          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Reflexos cobre para tons quentes",
-          affiliate: "https://mercadolivre.com.br/tinta-cobre-intenso"
-        },
-        {
-          name: "Máscara Nutritiva Cobre",
-          price: "R$ 46,90",
-          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
-          description: "Nutrição com reflexos acobreados",
-          affiliate: "https://mercadolivre.com.br/mascara-nutritiva-cobre"
-        }
-      ],
-      'escuro-frio': [
-        {
-          name: "Tinta Preto Azulado",
-          price: "R$ 49,90",
-          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Preto intenso com reflexos azulados",
-          affiliate: "https://mercadolivre.com.br/tinta-preto-azulado"
-        },
-        {
-          name: "Condicionador Brilho Intenso",
-          price: "R$ 39,90",
-          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
-          description: "Brilho e proteção para cabelos escuros",
-          affiliate: "https://mercadolivre.com.br/condicionador-brilho-intenso"
-        }
-      ],
-      'escuro-quente': [
-        {
-          name: "Tinta Chocolate Dourado",
-          price: "R$ 54,90",
-          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
-          description: "Chocolate com reflexos dourados",
-          affiliate: "https://mercadolivre.com.br/tinta-chocolate-dourado"
-        },
-        {
-          name: "Sérum Reparador Dourado",
-          price: "R$ 47,90",
-          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
-          description: "Reparação com brilho dourado",
-          affiliate: "https://mercadolivre.com.br/serum-reparador-dourado"
+          description: "Kit completo para qualquer coloração",
+          affiliate: "https://lista.mercadolivre.com.br/kit-coloracao-universal"
         }
       ]
     };
@@ -1305,6 +1227,8 @@
         currentQuestion++;
         document.getElementById(`question${currentQuestion}`).classList.add('active');
         updateProgressBar();
+      } else {
+        showResults();
       }
     }
 
@@ -1320,24 +1244,26 @@
       document.getElementById('quizProgress').style.width = `${progress}%`;
     }
 
-    function analyzeColorimetry() {
-      const { tomPele, subtom } = quizAnswers;
-      const key = `${tomPele}-${subtom}`;
-      return colorAnalysis[key] || colorAnalysis['medio-neutro'];
-    }
-
     function showResults() {
       document.getElementById(`question${currentQuestion}`).classList.remove('active');
       document.getElementById('quizResult').style.display = 'block';
       updateProgressBar();
 
-      const analysis = analyzeColorimetry();
+      const analysisKey = `${quizAnswers.tomPele}-${quizAnswers.subtom}`;
+      const analysis = colorAnalysis[analysisKey] || colorAnalysis['medio-neutro'];
 
-      // Mostrar resultado da análise
-      document.getElementById('colorAnalysisResult').innerHTML = `
+      displayAnalysisResults(analysis);
+      displayRecommendedProducts(analysisKey);
+
+      document.getElementById('quizResult').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function displayAnalysisResults(analysis) {
+      const container = document.getElementById('colorAnalysisResult');
+      
+      container.innerHTML = `
         <div class="skin-tone-display">
-          <div class="skin-tone-sample" style="background: ${analysis.skinColor};"></div>
-          <span>Seu Tom</span>
+          <div class="skin-tone-sample" style="background-color: ${analysis.skinColor};"></div>
         </div>
         <div class="color-analysis-info">
           <h4>${analysis.name}</h4>
@@ -1345,44 +1271,49 @@
         </div>
       `;
 
-      // Mostrar cores recomendadas
-      document.getElementById('recommendedColors').innerHTML = `
-        <h4>Cores Recomendadas para Você</h4>
-        <div class="colors-palette">
-          ${analysis.colors.map(color => `
-            <div class="color-item">
-              <div class="color-circle" style="background: ${color.color};"></div>
-              <span>${color.name}</span>
-            </div>
-          `).join('')}
-        </div>
-      `;
-
-      // Mostrar produtos recomendados
-      showProducts();
-
-      document.getElementById('quizResult').scrollIntoView({ behavior: 'smooth' });
+      const colorsContainer = document.getElementById('recommendedColors');
+      let colorsHtml = '<h4>Cores Recomendadas para Você:</h4><div class="colors-palette">';
+      
+      analysis.colors.forEach(color => {
+        colorsHtml += `
+          <div class="color-item">
+            <div class="color-circle" style="background-color: ${color.color};"></div>
+            <span>${color.name}</span>
+          </div>
+        `;
+      });
+      
+      colorsHtml += '</div>';
+      colorsContainer.innerHTML = colorsHtml;
     }
 
-    function showProducts() {
-      const { tomPele, subtom } = quizAnswers;
-      const key = `${tomPele}-${subtom}`;
-      const colorProducts = products[key] || products['medio-frio'];
-
-      document.getElementById('productsSection').style.display = 'block';
-      document.getElementById('productsGrid').innerHTML = colorProducts.map(product => `
-        <div class="product-card">
-          <img src="${product.image}" alt="${product.name}">
-          <div class="product-info">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <div class="product-price">${product.price}</div>
-            <button class="product-btn" onclick="window.open('${product.affiliate}', '_blank')">
-              <i class="fas fa-shopping-cart"></i> Comprar no Mercado Livre
-            </button>
+    function displayRecommendedProducts(analysisKey) {
+      const productList = products[analysisKey] || products['default'];
+      const container = document.getElementById('productsGrid');
+      
+      let html = '';
+      productList.forEach(product => {
+        html += `
+          <div class="product-card">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+              <h3>${product.name}</h3>
+              <p>${product.description}</p>
+              <div class="product-price">${product.price}</div>
+              <button class="product-btn" onclick="buyProduct('${product.affiliate}')">
+                <i class="fas fa-shopping-cart"></i> Comprar
+              </button>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      });
+      
+      container.innerHTML = html;
+      document.getElementById('productsSection').style.display = 'block';
+    }
+
+    function buyProduct(affiliateLink) {
+      window.open(affiliateLink, '_blank');
     }
 
     function resetQuiz() {
@@ -1401,8 +1332,6 @@
       document.getElementById('question1').classList.add('active');
 
       document.getElementById('quizProgress').style.width = '0%';
-
-      document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' });
     }
 
     function searchContent() {
@@ -1413,12 +1342,18 @@
         return;
       }
 
-      if (term.includes('tom') || term.includes('pele') || term.includes('cor')) {
-        alert(`Informações sobre "${term}" encontradas! Faça o quiz para descobrir suas cores ideais.`);
-      } else if (term.includes('produto') || term.includes('tinta')) {
+      if (term.includes('corte') || term.includes('cabelo')) {
+        window.location.href = 'cortes_index.html';
+      } else if (term.includes('cor') || term.includes('tinta') || term.includes('coloração')) {
+        window.location.href = 'cores_index.html';
+      } else if (term.includes('produto') || term.includes('shampoo')) {
         window.location.href = 'produtos_index.html';
+      } else if (term.includes('visagismo') || term.includes('rosto')) {
+        window.location.href = 'visagismo.html';
+      } else if (term.includes('blog') || term.includes('dica')) {
+        window.location.href = 'blog_index.html';
       } else {
-        alert(`Buscando por: "${term}"\n\nFaça nosso quiz para descobrir informações personalizadas!`);
+        alert(`Buscando por: "${term}"\n\nVisite nossas páginas específicas para encontrar o que procura!`);
       }
     }
 
