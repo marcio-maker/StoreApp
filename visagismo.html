@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubra seu formato de rosto e o corte ideal com nosso quiz de visagismo. Hair by Márcio oferece análise personalizada e produtos recomendados.">
+  <meta name="keywords" content="visagismo, formato de rosto, corte ideal, hair by márcio, quiz facial, análise facial">
+  <meta property="og:title" content="Visagismo - Descubra seu Corte Ideal | Hair by Márcio">
+  <meta property="og:description" content="Faça nosso quiz de visagismo e descubra qual corte valoriza mais suas características faciais.">
+  <meta property="og:image" content="https://example.com/hair-by-marcio-visagismo.jpg">
+  <meta property="og:url" content="https://hairbymarcio.com/visagismo">
+  <title>Visagismo - Descubra seu Corte Ideal | Hair by Márcio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+    }
+    
+    body {
+      background: #f5f5f5;
+      color: #333;
+      padding-top: 180px;
+    }
+    
+    /* Container para o Three.js */
+    #header-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      z-index: 90;
+    }
+    
+    /* Header com conteúdo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      z-index: 100;
+      background: transparent;
+    }
+    
+    .logo {
+      margin-bottom: 10px;
+    }
+    
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+    }
+    
+    /* Menu de navegação */
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .nav-menu a i {
+      font-size: 16px;
+    }
+    
+    .nav-menu a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    
+    /* Barra de busca */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      padding: 0 10px;
+    }
+    
+    .search-bar input {
+      width: 70%;
+      max-width: 400px;
+      padding: 10px;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 14px;
+    }
+    
+    .search-bar button {
+      padding: 10px 15px;
+      border: none;
+      background: #ff9a44;
+      color: white;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .search-bar button:hover {
+      background: #ef731a;
+    }
+
+    /* Conteúdo principal */
+    .main-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 28px;
+      color: #333;
+      display: inline-block;
+      padding: 0 20px;
+      background: #f5f5f5;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #ddd;
+      z-index: 0;
+    }
+    
+    .section-title p {
+      margin-top: 10px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .quiz-progress {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .quiz-question {
+      margin-bottom: 30px;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .quiz-question.active {
+      display: block;
+    }
+    
+    .quiz-question h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .quiz-option {
+      background: #f9f9f9;
+      border: 2px solid #eee;
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .quiz-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    
+    .quiz-option:hover {
+      background: #f0f0f0;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .quiz-option:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .quiz-option.selected {
+      background: #e1f0ff;
+      border-color: #b8d9ff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .quiz-option.selected::before {
+      transform: scaleX(1);
+    }
+    
+    .quiz-option img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+    
+    .quiz-option h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .quiz-option p {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .quiz-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .quiz-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .quiz-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .quiz-result {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    
+    .quiz-result h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .face-shape-result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .face-shape-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e89d42;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .face-shape-info h4 {
+      font-size: 24px;
+      color: #9357bb;
+      margin-bottom: 10px;
+    }
+    
+    .face-shape-info p {
+      color: #666;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+    
+    .recommended-cuts {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .recommended-cuts h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .cuts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .cut-item {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    
+    .cut-item:hover {
+      background: #e9ecef;
+      transform: translateY(-3px);
+    }
+    
+    .cut-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    
+    .cut-item span {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    /* Produtos Recomendados */
+    .products-section {
+      margin-top: 40px;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .product-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: #e89d42;
+    }
+    
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-info h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .product-info p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    
+    .product-price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #e89d42;
+      margin-bottom: 15px;
+    }
+    
+    .product-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .product-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
+    .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
+    .facebook { background: linear-gradient(45deg, #1877F2, #0A5F9E); }
+    
+    .social-icons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    
+    .copyright {
+      font-size: 12px;
+      color: #777;
+      margin-top: 15px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 160px;
+      }
+      
+      #header-bg {
+        height: 160px;
+      }
+      
+      header h1 {
+        font-size: 20px;
+      }
+      
+      header p {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      
+      .nav-menu {
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+      
+      .nav-menu a {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+      
+      .nav-menu a i {
+        font-size: 14px;
+      }
+      
+      .search-bar input {
+        width: 100%;
+        max-width: 300px;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      
+      .search-bar button {
+        padding: 8px 12px;
+      }
+      
+      .main-container {
+        padding: 15px;
+      }
+      
+      .section-title h2 {
+        font-size: 22px;
+      }
+      
+      .quiz-container {
+        padding: 20px;
+      }
+      
+      .quiz-question h3 {
+        font-size: 20px;
+      }
+      
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .face-shape-result {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding-top: 140px;
+      }
+      
+      #header-bg {
+        height: 140px;
+      }
+      
+      .logo {
+        margin-bottom: 5px;
+      }
+      
+      .nav-menu {
+        gap: 3px;
+      }
+      
+      .nav-menu a {
+        font-size: 11px;
+        padding: 4px 6px;
+      }
+      
+      .nav-menu a i {
+        display: none;
+      }
+      
+      .search-bar {
+        padding: 0 5px;
+      }
+      
+      .search-bar input {
+        width: 100%;
+        max-width: 250px;
+        padding: 6px 8px;
+      }
+      
+      .search-bar button {
+        padding: 6px 10px;
+      }
+      
+      .quiz-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      
+      .quiz-result h3 {
+        font-size: 24px;
+      }
+      
+      .face-shape-image {
+        width: 120px;
+        height: 120px;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Gradiente animado com Three.js -->
+  <div id="header-bg"></div>
+  
+  <!-- Header com conteúdo -->
+  <header>
+    <div class="logo">
+      <h1>HAIR BY MÁRCIO</h1>
+      <p>Descubra seu corte ideal com visagismo</p>
+    </div>
+    
+    <!-- Menu com 6 links e ícones -->
+    <nav class="nav-menu">
+      <a href="index.html"><i class="fas fa-home"></i> Início</a>
+      <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
+      <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
+      <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
+      <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
+      <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+    </nav>
+    
+    <!-- Barra de busca -->
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar informações..." id="searchInput">
+      <button onclick="searchContent()"><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <div class="main-container">
+    <div class="section-title">
+      <h2>Quiz de Visagismo</h2>
+      <p>Descubra seu formato de rosto e os cortes que mais valorizam suas características</p>
+    </div>
+    
+    <div class="quiz-container">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quizProgress"></div>
+      </div>
+      
+      <!-- Questão 1: Formato da Testa -->
+      <div class="quiz-question active" id="question1">
+        <h3>1. Como é o formato da sua testa?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(1, 'larga')">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=60" alt="Testa larga">
+            <h4>Testa Larga</h4>
+            <p>Testa ampla e proeminente</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(1, 'media')">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60" alt="Testa média">
+            <h4>Testa Média</h4>
+            <p>Testa proporcional ao rosto</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(1, 'estreita')">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=60" alt="Testa estreita">
+            <h4>Testa Estreita</h4>
+            <p>Testa mais fechada e pequena</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" style="visibility: hidden;">Voltar</button>
+          <button class="quiz-btn" id="nextBtn1" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 2: Formato da Mandíbula -->
+      <div class="quiz-question" id="question2">
+        <h3>2. Como é o formato da sua mandíbula?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(2, 'quadrada')">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=60" alt="Mandíbula quadrada">
+            <h4>Quadrada</h4>
+            <p>Mandíbula angular e definida</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(2, 'arredondada')">
+            <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&auto=format&fit=crop&q=60" alt="Mandíbula arredondada">
+            <h4>Arredondada</h4>
+            <p>Mandíbula suave e curva</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(2, 'pontuda')">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=60" alt="Mandíbula pontuda">
+            <h4>Pontuda</h4>
+            <p>Mandíbula afilada no queixo</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn2" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 3: Comprimento do Rosto -->
+      <div class="quiz-question" id="question3">
+        <h3>3. Qual o comprimento do seu rosto?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(3, 'longo')">
+            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&auto=format&fit=crop&q=60" alt="Rosto longo">
+            <h4>Longo</h4>
+            <p>Rosto alongado verticalmente</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(3, 'medio')">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=60" alt="Rosto médio">
+            <h4>Médio</h4>
+            <p>Proporção equilibrada</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(3, 'curto')">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60" alt="Rosto curto">
+            <h4>Curto</h4>
+            <p>Rosto mais compacto</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn3" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 4: Largura das Maçãs do Rosto -->
+      <div class="quiz-question" id="question4">
+        <h3>4. Como são suas maçãs do rosto?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(4, 'proeminentes')">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=60" alt="Maçãs proeminentes">
+            <h4>Proeminentes</h4>
+            <p>Maçãs bem definidas e salientes</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(4, 'suaves')">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=60" alt="Maçãs suaves">
+            <h4>Suaves</h4>
+            <p>Maçãs discretas e arredondadas</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(4, 'largas')">
+            <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&auto=format&fit=crop&q=60" alt="Maçãs largas">
+            <h4>Largas</h4>
+            <p>Maçãs amplas e horizontais</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn4" onclick="showResults()" disabled>
+            <span>Ver Resultado</span> <i class="fas fa-magic"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Resultado do Quiz -->
+      <div class="quiz-result" id="quizResult">
+        <h3>Seu Formato de Rosto</h3>
+        
+        <div class="face-shape-result" id="faceShapeResult">
+          <!-- Resultado será inserido aqui via JavaScript -->
+        </div>
+        
+        <div class="recommended-cuts" id="recommendedCuts">
+          <!-- Cortes recomendados serão inseridos aqui via JavaScript -->
+        </div>
+        
+        <button class="quiz-btn" onclick="resetQuiz()" style="margin-top: 20px;">
+          <i class="fas fa-redo"></i> <span>Refazer Quiz</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Seção de Produtos Recomendados -->
+    <div class="products-section" id="productsSection" style="display: none;">
+      <div class="section-title">
+        <h2>Produtos Recomendados</h2>
+        <p>Produtos específicos para manter seu corte sempre perfeito</p>
+      </div>
+      
+      <div class="products-grid" id="productsGrid">
+        <!-- Produtos serão inseridos aqui via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5511999999999" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="copyright">
+        © 2025 Hair by Márcio - Todos os direitos reservados
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    function initGradientBackground() {
+      const container = document.getElementById('header-bg');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      
+      // Cena
+      const scene = new THREE.Scene();
+      
+      // Câmera Ortográfica
+      const camera = new THREE.OrthographicCamera(
+        width / -2, width / 2, height / 2, height / -2, 1, 1000
+      );
+      camera.position.z = 2;
+      
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({ 
+        alpha: true,
+        antialias: true 
+      });
+      renderer.setSize(width, height);
+      container.appendChild(renderer.domElement);
+      
+      // Geometria
+      const geometry = new THREE.PlaneGeometry(width, height);
+      
+      // Material com Shader
+      const uniforms = {
+        time: { type: "f", value: 0 },
+        resolution: { type: "v2", value: new THREE.Vector2(width, height) }
+      };
+      
+      const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          varying vec2 vUv;
+          
+          void main() {
+            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
+            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
+            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
+            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
+            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+
+            float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
+            float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
+            float wave3 = sin(time * 0.7 + vUv.x * 5.0 + vUv.y * 5.0) * 0.5 + 0.5;
+
+            vec3 color = mix(color1, color2, wave1);
+            color = mix(color, color3, wave2 * 0.5);
+            color = mix(color, color4, wave3 * 0.3);
+
+            gl_FragColor = vec4(color, 0.92);
+          }
+        `,
+        transparent: true
+      });
+      
+      // Mesh
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+      
+      // Animação
+      function animate() {
+        requestAnimationFrame(animate);
+        uniforms.time.value += 0.01;
+        renderer.render(scene, camera);
+      }
+      
+      // Redimensionamento
+      window.addEventListener('resize', () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        
+        camera.left = width / -2;
+        camera.right = width / 2;
+        camera.top = height / 2;
+        camera.bottom = height / -2;
+        camera.updateProjectionMatrix();
+        
+        renderer.setSize(width, height);
+        uniforms.resolution.value.set(width, height);
+        
+        mesh.geometry.dispose();
+        mesh.geometry = new THREE.PlaneGeometry(width, height);
+      });
+      
+      animate();
+    }
+
+    // ================= QUIZ LOGIC =================
+    const quizAnswers = {
+      testa: null,
+      mandibula: null,
+      comprimento: null,
+      macas: null
+    };
+
+    let currentQuestion = 1;
+    const totalQuestions = 4;
+
+    // Dados dos formatos de rosto
+    const faceShapes = {
+      oval: {
+        name: "Oval",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=60",
+        description: "Formato equilibrado e harmonioso, considerado o formato ideal. Permite praticamente todos os tipos de corte.",
+        cuts: [
+          { name: "Undercut", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Pompadour", image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=100&auto=format&fit=crop&q=60" },
+          { name: "Side Part", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Buzz Cut", image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=100&auto=format&fit=crop&q=60" }
+        ]
+      },
+      redondo: {
+        name: "Redondo",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=60",
+        description: "Rosto com largura e altura similares. Ideal para cortes que alonguem o rosto e criem altura no topo.",
+        cuts: [
+          { name: "Quiff", image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=100&auto=format&fit=crop&q=60" },
+          { name: "Pompadour", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Undercut Alto", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Topknot", image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=100&auto=format&fit=crop&q=60" }
+        ]
+      },
+      quadrado: {
+        name: "Quadrado",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=60",
+        description: "Mandíbula forte e angular. Cortes que suavizem os ângulos e criem movimento são ideais.",
+        cuts: [
+          { name: "Textured Crop", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Messy Fringe", image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=100&auto=format&fit=crop&q=60" },
+          { name: "Layered Cut", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Wavy Style", image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=100&auto=format&fit=crop&q=60" }
+        ]
+      },
+      triangular: {
+        name: "Triangular",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=60",
+        description: "Testa mais estreita que a mandíbula. Cortes que criem volume no topo equilibram as proporções.",
+        cuts: [
+          { name: "Pompadour", image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=100&auto=format&fit=crop&q=60" },
+          { name: "Quiff Alto", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Side Swept", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Voluminoso", image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=100&auto=format&fit=crop&q=60" }
+        ]
+      },
+      longo: {
+        name: "Longo",
+        image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&auto=format&fit=crop&q=60",
+        description: "Rosto alongado verticalmente. Cortes que criem largura nas laterais ajudam a equilibrar.",
+        cuts: [
+          { name: "Caesar Cut", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Fringe", image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=100&auto=format&fit=crop&q=60" },
+          { name: "Crew Cut", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=100&auto=format&fit=crop&q=60" },
+          { name: "Buzz Cut", image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=100&auto=format&fit=crop&q=60" }
+        ]
+      }
+    };
+
+    // Produtos para cada formato de rosto
+    const products = {
+      oval: [
+        {
+          name: "Pomada Modeladora Premium",
+          price: "R$ 45,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Fixação forte e brilho natural para todos os estilos",
+          affiliate: "https://mercadolivre.com.br/pomada-modeladora-premium"
+        },
+        {
+          name: "Shampoo Fortalecedor",
+          price: "R$ 32,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Limpeza profunda mantendo a hidratação natural",
+          affiliate: "https://mercadolivre.com.br/shampoo-fortalecedor"
+        }
+      ],
+      redondo: [
+        {
+          name: "Gel Volumizador",
+          price: "R$ 38,90",
+          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
+          description: "Cria volume e altura, ideal para rostos redondos",
+          affiliate: "https://mercadolivre.com.br/gel-volumizador"
+        },
+        {
+          name: "Spray Texturizador",
+          price: "R$ 42,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Textura e movimento para alongar o rosto",
+          affiliate: "https://mercadolivre.com.br/spray-texturizador"
+        }
+      ],
+      quadrado: [
+        {
+          name: "Cera Matte",
+          price: "R$ 41,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Fixação flexível que suaviza ângulos faciais",
+          affiliate: "https://mercadolivre.com.br/cera-matte"
+        },
+        {
+          name: "Óleo Capilar",
+          price: "R$ 35,90",
+          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
+          description: "Hidratação e movimento natural aos fios",
+          affiliate: "https://mercadolivre.com.br/oleo-capilar"
+        }
+      ],
+      triangular: [
+        {
+          name: "Mousse Volumizador",
+          price: "R$ 39,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Volume no topo para equilibrar proporções",
+          affiliate: "https://mercadolivre.com.br/mousse-volumizador"
+        },
+        {
+          name: "Pomada Brilho",
+          price: "R$ 44,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Brilho e definição para estilos elevados",
+          affiliate: "https://mercadolivre.com.br/pomada-brilho"
+        }
+      ],
+      longo: [
+        {
+          name: "Pasta Modeladora",
+          price: "R$ 43,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Controle e definição para cortes estruturados",
+          affiliate: "https://mercadolivre.com.br/pasta-modeladora"
+        },
+        {
+          name: "Condicionador Hidratante",
+          price: "R$ 36,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Hidratação intensa para cabelos mais longos",
+          affiliate: "https://mercadolivre.com.br/condicionador-hidratante"
+        }
+      ]
+    };
+
+    function selectOption(question, value) {
+      const options = document.querySelectorAll(`#question${question} .quiz-option`);
+      options.forEach(option => option.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+      
+      if (question === 1) quizAnswers.testa = value;
+      if (question === 2) quizAnswers.mandibula = value;
+      if (question === 3) quizAnswers.comprimento = value;
+      if (question === 4) quizAnswers.macas = value;
+      
+      document.getElementById(`nextBtn${question}`).disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions) {
+        document.getElementById(`question${currentQuestion}`).classList.remove('active');
+        currentQuestion++;
+        document.getElementById(`question${currentQuestion}`).classList.add('active');
+        updateProgressBar();
+      }
+    }
+
+    function prevQuestion() {
+      document.getElementById(`question${currentQuestion}`).classList.remove('active');
+      currentQuestion--;
+      document.getElementById(`question${currentQuestion}`).classList.add('active');
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+      document.getElementById('quizProgress').style.width = `${progress}%`;
+    }
+
+    function analyzeFaceShape() {
+      // Lógica simplificada para determinar formato do rosto
+      const { testa, mandibula, comprimento, macas } = quizAnswers;
+      
+      if (comprimento === 'longo') return 'longo';
+      if (mandibula === 'quadrada' && testa === 'larga') return 'quadrado';
+      if (testa === 'estreita' && mandibula === 'quadrada') return 'triangular';
+      if (comprimento === 'curto' && macas === 'largas') return 'redondo';
+      
+      return 'oval'; // Formato padrão
+    }
+
+    function showResults() {
+      document.getElementById(`question${currentQuestion}`).classList.remove('active');
+      document.getElementById('quizResult').style.display = 'block';
+      updateProgressBar();
+      
+      const faceShape = analyzeFaceShape();
+      const shapeData = faceShapes[faceShape];
+      
+      // Mostrar resultado do formato de rosto
+      document.getElementById('faceShapeResult').innerHTML = `
+        <img src="${shapeData.image}" alt="Formato ${shapeData.name}" class="face-shape-image">
+        <div class="face-shape-info">
+          <h4>Formato ${shapeData.name}</h4>
+          <p>${shapeData.description}</p>
+        </div>
+      `;
+      
+      // Mostrar cortes recomendados
+      document.getElementById('recommendedCuts').innerHTML = `
+        <h4>Cortes Recomendados</h4>
+        <div class="cuts-grid">
+          ${shapeData.cuts.map(cut => `
+            <div class="cut-item">
+              <img src="${cut.image}" alt="${cut.name}">
+              <span>${cut.name}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      // Mostrar produtos recomendados
+      showProducts(faceShape);
+      
+      document.getElementById('quizResult').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showProducts(faceShape) {
+      const faceProducts = products[faceShape] || products.oval;
+      
+      document.getElementById('productsSection').style.display = 'block';
+      document.getElementById('productsGrid').innerHTML = faceProducts.map(product => `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-price">${product.price}</div>
+            <button class="product-btn" onclick="window.open('${product.affiliate}', '_blank')">
+              <i class="fas fa-shopping-cart"></i> Comprar no Mercado Livre
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetQuiz() {
+      currentQuestion = 1;
+      quizAnswers.testa = null;
+      quizAnswers.mandibula = null;
+      quizAnswers.comprimento = null;
+      quizAnswers.macas = null;
+      
+      document.querySelectorAll('.quiz-option').forEach(option => option.classList.remove('selected'));
+      document.querySelectorAll('[id^="nextBtn"]').forEach(btn => btn.disabled = true);
+      
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('productsSection').style.display = 'none';
+      document.querySelectorAll('.quiz-question').forEach(question => question.classList.remove('active'));
+      document.getElementById('question1').classList.add('active');
+      
+      document.getElementById('quizProgress').style.width = '0%';
+      
+      document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function searchContent() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      
+      if (term === '') {
+        alert('Digite algo para buscar!');
+        return;
+      }
+      
+      if (term.includes('oval') || term.includes('redondo') || term.includes('quadrado')) {
+        alert(`Informações sobre formato de rosto "${term}" encontradas! Faça o quiz para descobrir seu formato.`);
+      } else if (term.includes('corte') || term.includes('cabelo')) {
+        window.location.href = 'cortes_index.html';
+      } else {
+        alert(`Buscando por: "${term}"\n\nFaça nosso quiz para descobrir informações personalizadas!`);
+      }
+    }
+
+    // Inicialização
+    window.addEventListener('load', () => {
+      initGradientBackground();
+      updateProgressBar();
+    });
+
+    // Permitir Enter na busca
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchContent();
+      }
+    });
+  </script>
+</body>
+</html>
+

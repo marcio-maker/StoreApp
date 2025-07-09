@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubra suas cores ideais com nosso quiz de colorimetria. Hair by Márcio oferece análise de tom de pele e recomendações personalizadas de cores para cabelo.">
+  <meta name="keywords" content="colorimetria, tom de pele, cores ideais, hair by márcio, quiz colorimetria, análise de cor">
+  <meta property="og:title" content="Colorimetria - Descubra suas Cores Ideais | Hair by Márcio">
+  <meta property="og:description" content="Faça nosso quiz de colorimetria e descubra quais cores de cabelo harmonizam perfeitamente com seu tom de pele.">
+  <meta property="og:image" content="https://example.com/hair-by-marcio-colorimetria.jpg">
+  <meta property="og:url" content="https://hairbymarcio.com/colorimetria">
+  <title>Colorimetria - Descubra suas Cores Ideais | Hair by Márcio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+    }
+    
+    body {
+      background: #f5f5f5;
+      color: #333;
+      padding-top: 180px;
+    }
+    
+    /* Container para o Three.js */
+    #header-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      z-index: 90;
+    }
+    
+    /* Header com conteúdo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      z-index: 100;
+      background: transparent;
+    }
+    
+    .logo {
+      margin-bottom: 10px;
+    }
+    
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+    }
+    
+    /* Menu de navegação */
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .nav-menu a i {
+      font-size: 16px;
+    }
+    
+    .nav-menu a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    
+    /* Barra de busca */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      padding: 0 10px;
+    }
+    
+    .search-bar input {
+      width: 70%;
+      max-width: 400px;
+      padding: 10px;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 14px;
+    }
+    
+    .search-bar button {
+      padding: 10px 15px;
+      border: none;
+      background: #ff9a44;
+      color: white;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .search-bar button:hover {
+      background: #ef731a;
+    }
+
+    /* Conteúdo principal */
+    .main-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 28px;
+      color: #333;
+      display: inline-block;
+      padding: 0 20px;
+      background: #f5f5f5;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #ddd;
+      z-index: 0;
+    }
+    
+    .section-title p {
+      margin-top: 10px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .quiz-progress {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .quiz-question {
+      margin-bottom: 30px;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .quiz-question.active {
+      display: block;
+    }
+    
+    .quiz-question h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .quiz-option {
+      background: #f9f9f9;
+      border: 2px solid #eee;
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .quiz-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    
+    .quiz-option:hover {
+      background: #f0f0f0;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .quiz-option:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .quiz-option.selected {
+      background: #e1f0ff;
+      border-color: #b8d9ff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .quiz-option.selected::before {
+      transform: scaleX(1);
+    }
+    
+    .color-sample {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      border: 3px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .quiz-option h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .quiz-option p {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .quiz-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .quiz-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .quiz-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .quiz-result {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    
+    .quiz-result h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .color-analysis-result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .skin-tone-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .skin-tone-sample {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #e89d42;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .color-analysis-info h4 {
+      font-size: 24px;
+      color: #9357bb;
+      margin-bottom: 10px;
+    }
+    
+    .color-analysis-info p {
+      color: #666;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+    
+    .recommended-colors {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .recommended-colors h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .colors-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .color-item {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    
+    .color-item:hover {
+      background: #e9ecef;
+      transform: translateY(-3px);
+    }
+    
+    .color-item .color-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      border: 2px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .color-item span {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    /* Produtos Recomendados */
+    .products-section {
+      margin-top: 40px;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .product-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: #e89d42;
+    }
+    
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-info h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .product-info p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    
+    .product-price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #e89d42;
+      margin-bottom: 15px;
+    }
+    
+    .product-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #e89d42 0%, #9357bb 100%);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .product-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
+    .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
+    .facebook { background: linear-gradient(45deg, #1877F2, #0A5F9E); }
+    
+    .social-icons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    
+    .copyright {
+      font-size: 12px;
+      color: #777;
+      margin-top: 15px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 160px;
+      }
+      
+      #header-bg {
+        height: 160px;
+      }
+      
+      header h1 {
+        font-size: 20px;
+      }
+      
+      header p {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      
+      .nav-menu {
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+      
+      .nav-menu a {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+      
+      .nav-menu a i {
+        font-size: 14px;
+      }
+      
+      .search-bar input {
+        width: 100%;
+        max-width: 300px;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      
+      .search-bar button {
+        padding: 8px 12px;
+      }
+      
+      .main-container {
+        padding: 15px;
+      }
+      
+      .section-title h2 {
+        font-size: 22px;
+      }
+      
+      .quiz-container {
+        padding: 20px;
+      }
+      
+      .quiz-question h3 {
+        font-size: 20px;
+      }
+      
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .color-analysis-result {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding-top: 140px;
+      }
+      
+      #header-bg {
+        height: 140px;
+      }
+      
+      .logo {
+        margin-bottom: 5px;
+      }
+      
+      .nav-menu {
+        gap: 3px;
+      }
+      
+      .nav-menu a {
+        font-size: 11px;
+        padding: 4px 6px;
+      }
+      
+      .nav-menu a i {
+        display: none;
+      }
+      
+      .search-bar {
+        padding: 0 5px;
+      }
+      
+      .search-bar input {
+        width: 100%;
+        max-width: 250px;
+        padding: 6px 8px;
+      }
+      
+      .search-bar button {
+        padding: 6px 10px;
+      }
+      
+      .quiz-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      
+      .quiz-result h3 {
+        font-size: 24px;
+      }
+      
+      .skin-tone-sample {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Gradiente animado com Three.js -->
+  <div id="header-bg"></div>
+  
+  <!-- Header com conteúdo -->
+  <header>
+    <div class="logo">
+      <h1>HAIR BY MÁRCIO</h1>
+      <p>Descubra suas cores ideais com colorimetria</p>
+    </div>
+    
+    <!-- Menu com 6 links e ícones -->
+    <nav class="nav-menu">
+      <a href="index.html"><i class="fas fa-home"></i> Início</a>
+      <a href="cortes_index.html"><i class="fas fa-scissors"></i> Cortes</a>
+      <a href="cores_index.html"><i class="fas fa-palette"></i> Cores</a>
+      <a href="produtos_index.html"><i class="fas fa-shopping-bag"></i> Produtos</a>
+      <a href="visagismo.html"><i class="fas fa-user-tie"></i> Visagismo</a>
+      <a href="colorimetria.html"><i class="fas fa-eye-dropper"></i> Colorimetria</a>
+    </nav>
+    
+    <!-- Barra de busca -->
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar informações..." id="searchInput">
+      <button onclick="searchContent()"><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <div class="main-container">
+    <div class="section-title">
+      <h2>Quiz de Colorimetria</h2>
+      <p>Descubra seu tom de pele e as cores de cabelo que mais harmonizam com você</p>
+    </div>
+    
+    <div class="quiz-container">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quizProgress"></div>
+      </div>
+      
+      <!-- Questão 1: Tom de Pele -->
+      <div class="quiz-question active" id="question1">
+        <h3>1. Qual é o tom da sua pele?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(1, 'claro')">
+            <div class="color-sample" style="background: #F5DEB3;"></div>
+            <h4>Pele Clara</h4>
+            <p>Tom claro com tendência rosada</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(1, 'medio')">
+            <div class="color-sample" style="background: #DEB887;"></div>
+            <h4>Pele Média</h4>
+            <p>Tom médio equilibrado</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(1, 'moreno')">
+            <div class="color-sample" style="background: #D2B48C;"></div>
+            <h4>Pele Morena</h4>
+            <p>Tom moreno com dourado</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(1, 'escuro')">
+            <div class="color-sample" style="background: #8B4513;"></div>
+            <h4>Pele Escura</h4>
+            <p>Tom escuro profundo</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" style="visibility: hidden;">Voltar</button>
+          <button class="quiz-btn" id="nextBtn1" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 2: Subtom -->
+      <div class="quiz-question" id="question2">
+        <h3>2. Qual é o subtom da sua pele?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(2, 'quente')">
+            <div class="color-sample" style="background: linear-gradient(45deg, #FFD700, #FFA500);"></div>
+            <h4>Subtom Quente</h4>
+            <p>Dourado, amarelado ou acobreado</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(2, 'frio')">
+            <div class="color-sample" style="background: linear-gradient(45deg, #E6E6FA, #B0C4DE);"></div>
+            <h4>Subtom Frio</h4>
+            <p>Rosado, azulado ou avermelhado</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(2, 'neutro')">
+            <div class="color-sample" style="background: linear-gradient(45deg, #F5F5DC, #D3D3D3);"></div>
+            <h4>Subtom Neutro</h4>
+            <p>Equilibrio entre quente e frio</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn2" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 3: Cor dos Olhos -->
+      <div class="quiz-question" id="question3">
+        <h3>3. Qual é a cor dos seus olhos?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(3, 'castanho')">
+            <div class="color-sample" style="background: #8B4513;"></div>
+            <h4>Castanho</h4>
+            <p>Olhos castanhos ou marrons</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(3, 'azul')">
+            <div class="color-sample" style="background: #4169E1;"></div>
+            <h4>Azul</h4>
+            <p>Olhos azuis claros ou escuros</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(3, 'verde')">
+            <div class="color-sample" style="background: #228B22;"></div>
+            <h4>Verde</h4>
+            <p>Olhos verdes ou avelã</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(3, 'mel')">
+            <div class="color-sample" style="background: #DAA520;"></div>
+            <h4>Mel</h4>
+            <p>Olhos cor de mel ou âmbar</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn3" onclick="nextQuestion()" disabled>
+            <span>Próxima</span> <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Questão 4: Cor Natural do Cabelo -->
+      <div class="quiz-question" id="question4">
+        <h3>4. Qual é a cor natural do seu cabelo?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(4, 'loiro')">
+            <div class="color-sample" style="background: #F0E68C;"></div>
+            <h4>Loiro</h4>
+            <p>Loiro claro ou escuro</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(4, 'castanho')">
+            <div class="color-sample" style="background: #8B4513;"></div>
+            <h4>Castanho</h4>
+            <p>Castanho claro ou médio</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(4, 'preto')">
+            <div class="color-sample" style="background: #2F2F2F;"></div>
+            <h4>Preto</h4>
+            <p>Preto ou castanho escuro</p>
+          </div>
+          <div class="quiz-option" onclick="selectOption(4, 'ruivo')">
+            <div class="color-sample" style="background: #CD853F;"></div>
+            <h4>Ruivo</h4>
+            <p>Ruivo ou acobreado</p>
+          </div>
+        </div>
+        <div class="quiz-navigation">
+          <button class="quiz-btn" onclick="prevQuestion()">
+            <i class="fas fa-arrow-left"></i> <span>Voltar</span>
+          </button>
+          <button class="quiz-btn" id="nextBtn4" onclick="showResults()" disabled>
+            <span>Ver Resultado</span> <i class="fas fa-magic"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Resultado do Quiz -->
+      <div class="quiz-result" id="quizResult">
+        <h3>Sua Análise de Colorimetria</h3>
+        
+        <div class="color-analysis-result" id="colorAnalysisResult">
+          <!-- Resultado será inserido aqui via JavaScript -->
+        </div>
+        
+        <div class="recommended-colors" id="recommendedColors">
+          <!-- Cores recomendadas serão inseridas aqui via JavaScript -->
+        </div>
+        
+        <button class="quiz-btn" onclick="resetQuiz()" style="margin-top: 20px;">
+          <i class="fas fa-redo"></i> <span>Refazer Quiz</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Seção de Produtos Recomendados -->
+    <div class="products-section" id="productsSection" style="display: none;">
+      <div class="section-title">
+        <h2>Produtos Recomendados</h2>
+        <p>Produtos específicos para manter suas cores sempre vibrantes</p>
+      </div>
+      
+      <div class="products-grid" id="productsGrid">
+        <!-- Produtos serão inseridos aqui via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5511999999999" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="copyright">
+        © 2025 Hair by Márcio - Todos os direitos reservados
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // ================= THREE.JS - GRADIENTE ANIMADO =================
+    function initGradientBackground() {
+      const container = document.getElementById('header-bg');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      
+      // Cena
+      const scene = new THREE.Scene();
+      
+      // Câmera Ortográfica
+      const camera = new THREE.OrthographicCamera(
+        width / -2, width / 2, height / 2, height / -2, 1, 1000
+      );
+      camera.position.z = 2;
+      
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({ 
+        alpha: true,
+        antialias: true 
+      });
+      renderer.setSize(width, height);
+      container.appendChild(renderer.domElement);
+      
+      // Geometria
+      const geometry = new THREE.PlaneGeometry(width, height);
+      
+      // Material com Shader
+      const uniforms = {
+        time: { type: "f", value: 0 },
+        resolution: { type: "v2", value: new THREE.Vector2(width, height) }
+      };
+      
+      const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          varying vec2 vUv;
+          
+          void main() {
+            // Cores sofisticadas: azul petróleo, dourado, vinho, cinza
+            vec3 color1 = vec3(0.13, 0.29, 0.38); // Azul petróleo #224a61
+            vec3 color2 = vec3(0.85, 0.72, 0.36); // Dourado #dac05c
+            vec3 color3 = vec3(0.45, 0.13, 0.22); // Vinho #73213a
+            vec3 color4 = vec3(0.65, 0.67, 0.70); // Cinza #a6abb3
+
+            float wave1 = sin(time * 0.5 + vUv.x * 3.0) * 0.5 + 0.5;
+            float wave2 = cos(time * 0.3 + vUv.y * 2.0) * 0.5 + 0.5;
+            float wave3 = sin(time * 0.7 + vUv.x * 5.0 + vUv.y * 5.0) * 0.5 + 0.5;
+
+            vec3 color = mix(color1, color2, wave1);
+            color = mix(color, color3, wave2 * 0.5);
+            color = mix(color, color4, wave3 * 0.3);
+
+            gl_FragColor = vec4(color, 0.92);
+          }
+        `,
+        transparent: true
+      });
+      
+      // Mesh
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+      
+      // Animação
+      function animate() {
+        requestAnimationFrame(animate);
+        uniforms.time.value += 0.01;
+        renderer.render(scene, camera);
+      }
+      
+      // Redimensionamento
+      window.addEventListener('resize', () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        
+        camera.left = width / -2;
+        camera.right = width / 2;
+        camera.top = height / 2;
+        camera.bottom = height / -2;
+        camera.updateProjectionMatrix();
+        
+        renderer.setSize(width, height);
+        uniforms.resolution.value.set(width, height);
+        
+        mesh.geometry.dispose();
+        mesh.geometry = new THREE.PlaneGeometry(width, height);
+      });
+      
+      animate();
+    }
+
+    // ================= QUIZ LOGIC =================
+    const quizAnswers = {
+      tomPele: null,
+      subtom: null,
+      corOlhos: null,
+      corCabelo: null
+    };
+
+    let currentQuestion = 1;
+    const totalQuestions = 4;
+
+    // Dados das análises de colorimetria
+    const colorAnalysis = {
+      'claro-frio': {
+        name: "Pele Clara com Subtom Frio",
+        skinColor: "#F5DEB3",
+        description: "Sua pele clara com subtom frio harmoniza perfeitamente com cores frias e neutras. Evite tons muito quentes que podem criar contraste excessivo.",
+        colors: [
+          { name: "Loiro Platinado", color: "#F5F5DC", hex: "#F5F5DC" },
+          { name: "Castanho Acinzentado", color: "#696969", hex: "#696969" },
+          { name: "Preto Azulado", color: "#191970", hex: "#191970" },
+          { name: "Ruivo Acobreado", color: "#B87333", hex: "#B87333" }
+        ]
+      },
+      'claro-quente': {
+        name: "Pele Clara com Subtom Quente",
+        skinColor: "#F5DEB3",
+        description: "Sua pele clara com subtom quente combina lindamente com cores douradas e acobreadas. Tons quentes realçam seu brilho natural.",
+        colors: [
+          { name: "Loiro Dourado", color: "#FFD700", hex: "#FFD700" },
+          { name: "Castanho Mel", color: "#DAA520", hex: "#DAA520" },
+          { name: "Ruivo Cobre", color: "#CD853F", hex: "#CD853F" },
+          { name: "Caramelo", color: "#D2691E", hex: "#D2691E" }
+        ]
+      },
+      'medio-frio': {
+        name: "Pele Média com Subtom Frio",
+        skinColor: "#DEB887",
+        description: "Sua pele média com subtom frio permite uma gama variada de cores, especialmente tons frios e neutros que complementam sua base natural.",
+        colors: [
+          { name: "Castanho Chocolate", color: "#7B3F00", hex: "#7B3F00" },
+          { name: "Preto Natural", color: "#2F2F2F", hex: "#2F2F2F" },
+          { name: "Borgonha", color: "#800020", hex: "#800020" },
+          { name: "Castanho Avelã", color: "#8B4513", hex: "#8B4513" }
+        ]
+      },
+      'medio-quente': {
+        name: "Pele Média com Subtom Quente",
+        skinColor: "#DEB887",
+        description: "Sua pele média com subtom quente fica deslumbrante com cores ricas e douradas que realçam o calor natural da sua pele.",
+        colors: [
+          { name: "Castanho Dourado", color: "#B8860B", hex: "#B8860B" },
+          { name: "Caramelo Escuro", color: "#A0522D", hex: "#A0522D" },
+          { name: "Ruivo Intenso", color: "#A0522D", hex: "#A0522D" },
+          { name: "Chocolate Quente", color: "#8B4513", hex: "#8B4513" }
+        ]
+      },
+      'moreno-frio': {
+        name: "Pele Morena com Subtom Frio",
+        skinColor: "#D2B48C",
+        description: "Sua pele morena com subtom frio fica espetacular com cores profundas e ricas que criam contraste elegante.",
+        colors: [
+          { name: "Preto Intenso", color: "#000000", hex: "#000000" },
+          { name: "Castanho Escuro", color: "#654321", hex: "#654321" },
+          { name: "Borgonha Profundo", color: "#722F37", hex: "#722F37" },
+          { name: "Chocolate Amargo", color: "#3C1810", hex: "#3C1810" }
+        ]
+      },
+      'moreno-quente': {
+        name: "Pele Morena com Subtom Quente",
+        skinColor: "#D2B48C",
+        description: "Sua pele morena com subtom quente harmoniza perfeitamente com tons terrosos e dourados que realçam sua beleza natural.",
+        colors: [
+          { name: "Castanho Canela", color: "#8B4513", hex: "#8B4513" },
+          { name: "Cobre Intenso", color: "#B87333", hex: "#B87333" },
+          { name: "Chocolate com Leite", color: "#7B3F00", hex: "#7B3F00" },
+          { name: "Caramelo Profundo", color: "#A0522D", hex: "#A0522D" }
+        ]
+      },
+      'escuro-frio': {
+        name: "Pele Escura com Subtom Frio",
+        skinColor: "#8B4513",
+        description: "Sua pele escura com subtom frio fica magnífica com cores intensas e contrastantes que destacam sua beleza única.",
+        colors: [
+          { name: "Preto Azulado", color: "#191970", hex: "#191970" },
+          { name: "Borgonha Real", color: "#800020", hex: "#800020" },
+          { name: "Chocolate Negro", color: "#1C1C1C", hex: "#1C1C1C" },
+          { name: "Castanho Mogno", color: "#722F37", hex: "#722F37" }
+        ]
+      },
+      'escuro-quente': {
+        name: "Pele Escura com Subtom Quente",
+        skinColor: "#8B4513",
+        description: "Sua pele escura com subtom quente brilha com cores ricas e douradas que complementam perfeitamente sua tonalidade natural.",
+        colors: [
+          { name: "Castanho Dourado Escuro", color: "#654321", hex: "#654321" },
+          { name: "Cobre Profundo", color: "#8B4513", hex: "#8B4513" },
+          { name: "Chocolate Dourado", color: "#7B3F00", hex: "#7B3F00" },
+          { name: "Caramelo Intenso", color: "#A0522D", hex: "#A0522D" }
+        ]
+      }
+    };
+
+    // Produtos para cada tipo de colorimetria
+    const products = {
+      'claro-frio': [
+        {
+          name: "Shampoo Matizador Platinado",
+          price: "R$ 48,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Neutraliza tons amarelados em cabelos loiros e grisalhos",
+          affiliate: "https://mercadolivre.com.br/shampoo-matizador-platinado"
+        },
+        {
+          name: "Tinta Loiro Platinado",
+          price: "R$ 65,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Coloração profissional para tons frios e platinados",
+          affiliate: "https://mercadolivre.com.br/tinta-loiro-platinado"
+        }
+      ],
+      'claro-quente': [
+        {
+          name: "Tinta Loiro Dourado",
+          price: "R$ 59,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Coloração dourada para realçar tons quentes",
+          affiliate: "https://mercadolivre.com.br/tinta-loiro-dourado"
+        },
+        {
+          name: "Máscara Hidratante Dourada",
+          price: "R$ 42,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Hidratação com reflexos dourados",
+          affiliate: "https://mercadolivre.com.br/mascara-hidratante-dourada"
+        }
+      ],
+      'medio-frio': [
+        {
+          name: "Tinta Castanho Chocolate",
+          price: "R$ 52,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Cor rica e profunda para tons frios",
+          affiliate: "https://mercadolivre.com.br/tinta-castanho-chocolate"
+        },
+        {
+          name: "Condicionador Protetor de Cor",
+          price: "R$ 38,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Protege e mantém a cor por mais tempo",
+          affiliate: "https://mercadolivre.com.br/condicionador-protetor-cor"
+        }
+      ],
+      'medio-quente': [
+        {
+          name: "Tinta Caramelo",
+          price: "R$ 56,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Tom caramelo quente e luminoso",
+          affiliate: "https://mercadolivre.com.br/tinta-caramelo"
+        },
+        {
+          name: "Óleo Nutritivo Dourado",
+          price: "R$ 44,90",
+          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
+          description: "Nutrição com brilho dourado",
+          affiliate: "https://mercadolivre.com.br/oleo-nutritivo-dourado"
+        }
+      ],
+      'moreno-frio': [
+        {
+          name: "Tinta Borgonha",
+          price: "R$ 61,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Cor intensa e sofisticada",
+          affiliate: "https://mercadolivre.com.br/tinta-borgonha"
+        },
+        {
+          name: "Shampoo Realçador de Cor",
+          price: "R$ 41,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Realça e intensifica cores escuras",
+          affiliate: "https://mercadolivre.com.br/shampoo-realcador-cor"
+        }
+      ],
+      'moreno-quente': [
+        {
+          name: "Tinta Cobre Intenso",
+          price: "R$ 58,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Reflexos cobre para tons quentes",
+          affiliate: "https://mercadolivre.com.br/tinta-cobre-intenso"
+        },
+        {
+          name: "Máscara Nutritiva Cobre",
+          price: "R$ 46,90",
+          image: "https://images.unsplash.com/photo-1556228578-32252ba9a6a4?w=300&auto=format&fit=crop&q=60",
+          description: "Nutrição com reflexos acobreados",
+          affiliate: "https://mercadolivre.com.br/mascara-nutritiva-cobre"
+        }
+      ],
+      'escuro-frio': [
+        {
+          name: "Tinta Preto Azulado",
+          price: "R$ 49,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Preto intenso com reflexos azulados",
+          affiliate: "https://mercadolivre.com.br/tinta-preto-azulado"
+        },
+        {
+          name: "Condicionador Brilho Intenso",
+          price: "R$ 39,90",
+          image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&auto=format&fit=crop&q=60",
+          description: "Brilho e proteção para cabelos escuros",
+          affiliate: "https://mercadolivre.com.br/condicionador-brilho-intenso"
+        }
+      ],
+      'escuro-quente': [
+        {
+          name: "Tinta Chocolate Dourado",
+          price: "R$ 54,90",
+          image: "https://images.unsplash.com/photo-1595341595379-cf1cd0fb7fb3?w=300&auto=format&fit=crop&q=60",
+          description: "Chocolate com reflexos dourados",
+          affiliate: "https://mercadolivre.com.br/tinta-chocolate-dourado"
+        },
+        {
+          name: "Sérum Reparador Dourado",
+          price: "R$ 47,90",
+          image: "https://images.unsplash.com/photo-1596704017250-7b016c97ce6f?w=300&auto=format&fit=crop&q=60",
+          description: "Reparação com brilho dourado",
+          affiliate: "https://mercadolivre.com.br/serum-reparador-dourado"
+        }
+      ]
+    };
+
+    function selectOption(question, value) {
+      const options = document.querySelectorAll(`#question${question} .quiz-option`);
+      options.forEach(option => option.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+      
+      if (question === 1) quizAnswers.tomPele = value;
+      if (question === 2) quizAnswers.subtom = value;
+      if (question === 3) quizAnswers.corOlhos = value;
+      if (question === 4) quizAnswers.corCabelo = value;
+      
+      document.getElementById(`nextBtn${question}`).disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions) {
+        document.getElementById(`question${currentQuestion}`).classList.remove('active');
+        currentQuestion++;
+        document.getElementById(`question${currentQuestion}`).classList.add('active');
+        updateProgressBar();
+      }
+    }
+
+    function prevQuestion() {
+      document.getElementById(`question${currentQuestion}`).classList.remove('active');
+      currentQuestion--;
+      document.getElementById(`question${currentQuestion}`).classList.add('active');
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+      document.getElementById('quizProgress').style.width = `${progress}%`;
+    }
+
+    function analyzeColorimetry() {
+      const { tomPele, subtom } = quizAnswers;
+      const key = `${tomPele}-${subtom}`;
+      return colorAnalysis[key] || colorAnalysis['medio-neutro'];
+    }
+
+    function showResults() {
+      document.getElementById(`question${currentQuestion}`).classList.remove('active');
+      document.getElementById('quizResult').style.display = 'block';
+      updateProgressBar();
+      
+      const analysis = analyzeColorimetry();
+      
+      // Mostrar resultado da análise
+      document.getElementById('colorAnalysisResult').innerHTML = `
+        <div class="skin-tone-display">
+          <div class="skin-tone-sample" style="background: ${analysis.skinColor};"></div>
+          <span>Seu Tom</span>
+        </div>
+        <div class="color-analysis-info">
+          <h4>${analysis.name}</h4>
+          <p>${analysis.description}</p>
+        </div>
+      `;
+      
+      // Mostrar cores recomendadas
+      document.getElementById('recommendedColors').innerHTML = `
+        <h4>Cores Recomendadas para Você</h4>
+        <div class="colors-palette">
+          ${analysis.colors.map(color => `
+            <div class="color-item">
+              <div class="color-circle" style="background: ${color.color};"></div>
+              <span>${color.name}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      // Mostrar produtos recomendados
+      showProducts();
+      
+      document.getElementById('quizResult').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showProducts() {
+      const { tomPele, subtom } = quizAnswers;
+      const key = `${tomPele}-${subtom}`;
+      const colorProducts = products[key] || products['medio-frio'];
+      
+      document.getElementById('productsSection').style.display = 'block';
+      document.getElementById('productsGrid').innerHTML = colorProducts.map(product => `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-price">${product.price}</div>
+            <button class="product-btn" onclick="window.open('${product.affiliate}', '_blank')">
+              <i class="fas fa-shopping-cart"></i> Comprar no Mercado Livre
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetQuiz() {
+      currentQuestion = 1;
+      quizAnswers.tomPele = null;
+      quizAnswers.subtom = null;
+      quizAnswers.corOlhos = null;
+      quizAnswers.corCabelo = null;
+      
+      document.querySelectorAll('.quiz-option').forEach(option => option.classList.remove('selected'));
+      document.querySelectorAll('[id^="nextBtn"]').forEach(btn => btn.disabled = true);
+      
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('productsSection').style.display = 'none';
+      document.querySelectorAll('.quiz-question').forEach(question => question.classList.remove('active'));
+      document.getElementById('question1').classList.add('active');
+      
+      document.getElementById('quizProgress').style.width = '0%';
+      
+      document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function searchContent() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      
+      if (term === '') {
+        alert('Digite algo para buscar!');
+        return;
+      }
+      
+      if (term.includes('tom') || term.includes('pele') || term.includes('cor')) {
+        alert(`Informações sobre "${term}" encontradas! Faça o quiz para descobrir suas cores ideais.`);
+      } else if (term.includes('produto') || term.includes('tinta')) {
+        window.location.href = 'produtos_index.html';
+      } else {
+        alert(`Buscando por: "${term}"\n\nFaça nosso quiz para descobrir informações personalizadas!`);
+      }
+    }
+
+    // Inicialização
+    window.addEventListener('load', () => {
+      initGradientBackground();
+      updateProgressBar();
+    });
+
+    // Permitir Enter na busca
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchContent();
+      }
+    });
+  </script>
+</body>
+</html>
+
